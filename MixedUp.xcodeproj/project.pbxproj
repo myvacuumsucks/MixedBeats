@@ -15,7 +15,7 @@
 		8B8443C31A32A94F00E04392 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8443C11A32A94F00E04392 /* LaunchScreen.xib */; };
 		8B8443CF1A32A94F00E04392 /* MixedUpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443CE1A32A94F00E04392 /* MixedUpTests.m */; };
 		8B8443DC1A32BAB500E04392 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443DB1A32BAB500E04392 /* NetworkController.m */; };
-		8B8443DF1A34382500E04392 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443DE1A34382500E04392 /* WebViewController.m */; };
+		8BD4F12C1A3912AD0060A610 /* Beat.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD4F12B1A3912AD0060A610 /* Beat.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,8 +44,8 @@
 		8B8443CE1A32A94F00E04392 /* MixedUpTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixedUpTests.m; sourceTree = "<group>"; };
 		8B8443DA1A32BAB500E04392 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
 		8B8443DB1A32BAB500E04392 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
-		8B8443DD1A34382500E04392 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		8B8443DE1A34382500E04392 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		8BD4F12A1A3912AD0060A610 /* Beat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beat.h; sourceTree = "<group>"; };
+		8BD4F12B1A3912AD0060A610 /* Beat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beat.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +91,8 @@
 				8B8443B71A32A94F00E04392 /* AppDelegate.m */,
 				8B8443DA1A32BAB500E04392 /* NetworkController.h */,
 				8B8443DB1A32BAB500E04392 /* NetworkController.m */,
-				8B8443DD1A34382500E04392 /* WebViewController.h */,
-				8B8443DE1A34382500E04392 /* WebViewController.m */,
+				8BD4F12A1A3912AD0060A610 /* Beat.h */,
+				8BD4F12B1A3912AD0060A610 /* Beat.m */,
 				8B8443B91A32A94F00E04392 /* ViewController.h */,
 				8B8443BA1A32A94F00E04392 /* ViewController.m */,
 				8B8443BC1A32A94F00E04392 /* Main.storyboard */,
@@ -229,8 +229,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD4F12C1A3912AD0060A610 /* Beat.m in Sources */,
 				8B8443DC1A32BAB500E04392 /* NetworkController.m in Sources */,
-				8B8443DF1A34382500E04392 /* WebViewController.m in Sources */,
 				8B8443BB1A32A94F00E04392 /* ViewController.m in Sources */,
 				8B8443B81A32A94F00E04392 /* AppDelegate.m in Sources */,
 				8B8443B51A32A94F00E04392 /* main.m in Sources */,
