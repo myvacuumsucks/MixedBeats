@@ -1,0 +1,47 @@
+{
+    "data": [
+        {
+            "type": "search_result",
+            "result_type": "track",
+            "id": "tr56470885",
+            "display": "Blood On The Tracks",
+            "detail": "Phantom Creeps",
+            "related": {
+                "ref_type": "album",
+                "id": "al56470855",
+                "display": "Hellbilly Rebel Fire"
+            }
+        },
+        {
+            "type": "search_result",
+            "result_type": "track",
+            "id": "tr5898589",
+            "display": "Here Today, Gone Tomorrow",
+            "detail": "Blood On The Tracks",
+            "related": {
+                "ref_type": "album",
+                "id": "al5898587",
+                "display": "Blood On The Tracks"
+            }
+        },
+        {
+            "type": "search_result",
+            "result_type": "track",
+            "id": "tr51760477",
+            "display": "Blood On The Tracks",
+            "detail": "Michael Gray",
+            "related": {
+                "ref_type": "album",
+                "id": "al51760469",
+                "display": "Bob Dylan Encyclopedia Greatest Hits"
+            }
+        },
+        ...
+    ],
+    "info": {
+        "offset": 0,
+        "count": 20,
+        "total": 20
+    },
+    "code": "OK"
+}
