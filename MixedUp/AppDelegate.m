@@ -22,7 +22,7 @@
 
 -(bool)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
   [[NetworkController sharedInstance]handleOAuthURL:url];
-  return true;
+  return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

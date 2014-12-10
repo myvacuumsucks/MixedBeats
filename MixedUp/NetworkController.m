@@ -48,7 +48,17 @@ NSString* redirectURL = @"somefancyname://test";
 -(void)handleOAuthURL: (NSURL*) callbackURL {
   NSURL* query = callbackURL.query;
   
-  NSLog(@"%@", callbackURL.query);
+  NSMutableString *components = query;
+  NSMutableArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
+  NSString* comp1 = [comp1Array lastObject];
+  NSMutableArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
+  NSString* token = [comp2Array firstObject];
+  
+  
+  
+  
+  NSLog(@"%@", token);
+  
 
 
 }
