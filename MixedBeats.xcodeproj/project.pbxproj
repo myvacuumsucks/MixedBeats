@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45293A7D1A37F065007C0E36 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45293A7C1A37F065007C0E36 /* NetworkController.m */; };
 		45E836721A32BA31009BC9BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E836711A32BA31009BC9BD /* main.m */; };
 		45E836751A32BA31009BC9BD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E836741A32BA31009BC9BD /* AppDelegate.m */; };
 		45E836781A32BA31009BC9BD /* MixedBeats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45E836761A32BA31009BC9BD /* MixedBeats.xcdatamodeld */; };
@@ -15,6 +16,8 @@
 		45E836801A32BA31009BC9BD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45E8367F1A32BA31009BC9BD /* Images.xcassets */; };
 		45E836831A32BA31009BC9BD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45E836811A32BA31009BC9BD /* LaunchScreen.xib */; };
 		45E8368F1A32BA31009BC9BD /* MixedBeatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E8368E1A32BA31009BC9BD /* MixedBeatsTests.m */; };
+		45E8369A1A32BA66009BC9BD /* Beat.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E836991A32BA66009BC9BD /* Beat.m */; };
+		45E8369D1A32BCFF009BC9BD /* beatsTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 45E8369C1A32BCFF009BC9BD /* beatsTest.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		45293A7B1A37F065007C0E36 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
+		45293A7C1A37F065007C0E36 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
 		45E8366C1A32BA31009BC9BD /* MixedBeats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixedBeats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E836701A32BA31009BC9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45E836711A32BA31009BC9BD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -42,6 +47,9 @@
 		45E836881A32BA31009BC9BD /* MixedBeatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixedBeatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E8368D1A32BA31009BC9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45E8368E1A32BA31009BC9BD /* MixedBeatsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixedBeatsTests.m; sourceTree = "<group>"; };
+		45E836981A32BA66009BC9BD /* Beat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beat.h; sourceTree = "<group>"; };
+		45E836991A32BA66009BC9BD /* Beat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beat.m; sourceTree = "<group>"; };
+		45E8369C1A32BCFF009BC9BD /* beatsTest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = beatsTest.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		452F062A1A37F9FD003A5C48 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				45293A7B1A37F065007C0E36 /* NetworkController.h */,
+				45293A7C1A37F065007C0E36 /* NetworkController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		45E836631A32BA31009BC9BD = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +104,8 @@
 				45E836741A32BA31009BC9BD /* AppDelegate.m */,
 				45E836791A32BA31009BC9BD /* ViewController.h */,
 				45E8367A1A32BA31009BC9BD /* ViewController.m */,
+				452F062A1A37F9FD003A5C48 /* Controller */,
+				45E8369B1A32BA72009BC9BD /* Model */,
 				45E8367C1A32BA31009BC9BD /* Main.storyboard */,
 				45E8367F1A32BA31009BC9BD /* Images.xcassets */,
 				45E836811A32BA31009BC9BD /* LaunchScreen.xib */,
@@ -99,6 +118,7 @@
 		45E8366F1A32BA31009BC9BD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				45E8369C1A32BCFF009BC9BD /* beatsTest.json */,
 				45E836701A32BA31009BC9BD /* Info.plist */,
 				45E836711A32BA31009BC9BD /* main.m */,
 			);
@@ -120,6 +140,15 @@
 				45E8368D1A32BA31009BC9BD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		45E8369B1A32BA72009BC9BD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				45E836981A32BA66009BC9BD /* Beat.h */,
+				45E836991A32BA66009BC9BD /* Beat.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45E8367E1A32BA31009BC9BD /* Main.storyboard in Resources */,
+				45E8369D1A32BCFF009BC9BD /* beatsTest.json in Resources */,
 				45E836831A32BA31009BC9BD /* LaunchScreen.xib in Resources */,
 				45E836801A32BA31009BC9BD /* Images.xcassets in Resources */,
 			);
@@ -222,9 +252,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45E8369A1A32BA66009BC9BD /* Beat.m in Sources */,
 				45E836781A32BA31009BC9BD /* MixedBeats.xcdatamodeld in Sources */,
 				45E836751A32BA31009BC9BD /* AppDelegate.m in Sources */,
 				45E8367B1A32BA31009BC9BD /* ViewController.m in Sources */,
+				45293A7D1A37F065007C0E36 /* NetworkController.m in Sources */,
 				45E836721A32BA31009BC9BD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +450,7 @@
 				45E836941A32BA31009BC9BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		45E836951A32BA31009BC9BD /* Build configuration list for PBXNativeTarget "MixedBeatsTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +459,7 @@
 				45E836971A32BA31009BC9BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
