@@ -45,7 +45,7 @@
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
   NSString *searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
   
-  [[NetworkController sharedManager] searchTerm:searchTerm completionHandler:^(NSError *error, NSMutableArray *beats) {
+  [[NetworkController sharedInstance] searchTerm:searchTerm completionHandler:^(NSError *error, NSMutableArray *beats) {
     self.beatsArray = beats;
     [self.tableView reloadData];
   }];
