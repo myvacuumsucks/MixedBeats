@@ -15,10 +15,48 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FwW-Gm-0vc">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="eZM-rO-Jhl">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CELL" id="Dpf-qt-Ntz">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dpf-qt-Ntz" id="JqW-Ux-WhC">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FwW-Gm-0vc" secondAttribute="trailing" id="Ahe-SS-QtD"/>
+                            <constraint firstItem="FwW-Gm-0vc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="F7X-BW-M5l"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FwW-Gm-0vc" secondAttribute="bottom" id="rwM-zI-uK7"/>
+                            <constraint firstItem="FwW-Gm-0vc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zXD-2i-6Yl"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="eZM-rO-Jhl" id="k9b-sR-2Um"/>
+                        <outlet property="searchDisplayController" destination="7Ea-x8-V7l" id="oSW-Fd-nSa"/>
+                        <outlet property="tableView" destination="FwW-Gm-0vc" id="uI5-BK-vAL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="7Ea-x8-V7l">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="Kyc-14-5Wl"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="9Ya-YR-ron"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="2OF-Ib-tcl"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="4MP-yZ-kmR"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="154" y="80"/>
         </scene>
