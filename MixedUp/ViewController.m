@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+//step 1
   [[NetworkController sharedInstance]requestOAuthAccess];
   
   self.tableView.delegate = self;

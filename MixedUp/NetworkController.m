@@ -38,29 +38,27 @@ NSString* redirectURL = @"somefancyname://test";
 
 
 -(void)requestOAuthAccess {
+//Making URL string with callback URL so Beats knows where to go back to
   NSString *loginURL = [NSString stringWithFormat: @"%@?response_type=%@&redirect_uri=%@&client_id=%@", oAuthURL, response_type, redirectURL, clientID];
   NSURL* url = [NSURL URLWithString:loginURL];
-  
+  //step 2, leaves app and presents user with webpage
   [[UIApplication sharedApplication]openURL:url];
 }
 
 
 -(void)handleOAuthURL: (NSURL*) callbackURL {
-  NSURL* query = callbackURL.query;
-  
-  NSMutableString *components = query;
-  NSMutableArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
+    //everything passed the question mark of the URL is the query string (contains perameters)
+//cut the URL up in to pieces until you have token
+    NSString *query = callbackURL.query;
+  NSString *components = query;
+  NSArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
   NSString* comp1 = [comp1Array lastObject];
-  NSMutableArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
+  NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
   NSString* token = [comp2Array firstObject];
   
-  
-  
-  
-  NSLog(@"%@", token);
-  
 
-
+  NSLog(@"Token: %@", token);
+  
 }
 
 

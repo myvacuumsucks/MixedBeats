@@ -20,6 +20,7 @@
   return YES;
 }
 
+//Step 4
 -(bool)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
   [[NetworkController sharedInstance]handleOAuthURL:url];
   return YES;
