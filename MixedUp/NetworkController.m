@@ -47,9 +47,9 @@ NSString* redirectURL = @"somefancyname://test";
 
 
 -(void)handleOAuthURL: (NSURL*) callbackURL {
-    //everything passed the question mark of the URL is the query string (contains perameters)
+//everything passed the question mark of the URL is the query string (contains perameters)
 //cut the URL up in to pieces until you have token
-    NSString *query = callbackURL.query;
+  NSString *query = callbackURL.query;
   NSString *components = query;
   NSArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
   NSString* comp1 = [comp1Array lastObject];
