@@ -66,6 +66,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B0BC3921A40D3D90050405E /* MODEL */ = {
+			isa = PBXGroup;
+			children = (
+				8BD4F12A1A3912AD0060A610 /* Beat.h */,
+				8BD4F12B1A3912AD0060A610 /* Beat.m */,
+			);
+			name = MODEL;
+			sourceTree = "<group>";
+		};
 		8B8443A61A32A94F00E04392 = {
 			isa = PBXGroup;
 			children = (
@@ -89,10 +98,9 @@
 			children = (
 				8B8443B61A32A94F00E04392 /* AppDelegate.h */,
 				8B8443B71A32A94F00E04392 /* AppDelegate.m */,
+				8B0BC3921A40D3D90050405E /* MODEL */,
 				8B8443DA1A32BAB500E04392 /* NetworkController.h */,
 				8B8443DB1A32BAB500E04392 /* NetworkController.m */,
-				8BD4F12A1A3912AD0060A610 /* Beat.h */,
-				8BD4F12B1A3912AD0060A610 /* Beat.m */,
 				8B8443B91A32A94F00E04392 /* ViewController.h */,
 				8B8443BA1A32A94F00E04392 /* ViewController.m */,
 				8B8443BC1A32A94F00E04392 /* Main.storyboard */,
