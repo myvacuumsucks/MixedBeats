@@ -10,6 +10,7 @@
 
 @interface ViewController ()
 
+@property (strong, nonatomic) NSString *token;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSArray *beatsArray;
@@ -20,7 +21,16 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [[NetworkController sharedInstance]requestOAuthAccess];
+  
+  
+    
+  if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]) {
+    self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
+    NSLog(@"%@", self.token);
+  }else{
+    [[NetworkController sharedInstance]requestOAuthAccess];
+  }
+  
   
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
