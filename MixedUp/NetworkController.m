@@ -15,7 +15,6 @@
 
 @implementation NetworkController
 
-
 NSString* clientID = @"3nbxp96juh7spx6j9srkknhs";
 NSString* clientSecret = @"uSbQFBHZtJEvBxjg2dc2fhRs";
 NSString* oAuthURL = @"https://partner.api.beatsmusic.com/v1/oauth2/authorize";
@@ -49,11 +48,7 @@ NSString* redirectURL = @"somefancyname://test";
   NSString* token = [comp2Array firstObject];
 
   NSLog(@"%@", token);
-  
-
-
 }
-
 
 - (void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *beats))completionHandler {
   NSString *urlWithSearchTerm = [[NSString alloc] init];
@@ -61,13 +56,9 @@ NSString* redirectURL = @"somefancyname://test";
   
   
   NSURL *url = [[NSURL alloc] initWithString:urlWithSearchTerm];
-  
   NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-  
   NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-  
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
-  
   NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     
     if (error) {
