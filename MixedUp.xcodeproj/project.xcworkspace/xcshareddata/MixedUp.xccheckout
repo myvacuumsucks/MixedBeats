@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>31A6EE21-72F0-4FD8-B45F-CDEBCA3D4E23</string>
+	<string>B336FC56-B854-4EF5-9CEF-B42EFE3A67DA</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MixedUp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>D5712D477286B470071BB3FC588FDEBAF291C0F2</key>
-		<string>https://github.com/Kolo13/MixedBeats.git</string>
+		<string>https://github.com/brmendez/MixedBeats.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MixedUp.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/Kolo13/MixedBeats.git</string>
+	<string>https://github.com/brmendez/MixedBeats.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

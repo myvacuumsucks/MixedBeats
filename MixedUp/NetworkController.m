@@ -13,9 +13,6 @@
 
 @end
 
-
-
-
 @implementation NetworkController
 
 
@@ -36,15 +33,13 @@ NSString* redirectURL = @"somefancyname://test";
   return _sharedInstance;
 }
 
-
 -(void)requestOAuthAccess {
   NSString *loginURL = [NSString stringWithFormat: @"%@?response_type=%@&redirect_uri=%@&client_id=%@", oAuthURL, response_type, redirectURL, clientID];
   NSURL* url = [NSURL URLWithString:loginURL];
   
   [[UIApplication sharedApplication]openURL:url];
 }
-
-
+//asdf
 -(void)handleOAuthURL: (NSURL*) callbackURL {
   NSString* query = callbackURL.query;
   NSString *components = query;
@@ -52,10 +47,7 @@ NSString* redirectURL = @"somefancyname://test";
   NSString* comp1 = [comp1Array lastObject];
   NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
   NSString* token = [comp2Array firstObject];
-  
-  
-  
-  
+
   NSLog(@"%@", token);
   
 
