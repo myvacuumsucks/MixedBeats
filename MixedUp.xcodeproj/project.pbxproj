@@ -101,6 +101,7 @@
 				8B0BC3921A40D3D90050405E /* MODEL */,
 				8B8443DA1A32BAB500E04392 /* NetworkController.h */,
 				8B8443DB1A32BAB500E04392 /* NetworkController.m */,
+				8BEEFAE11A40DB2600A8518F /* VIEW */,
 				8B8443B91A32A94F00E04392 /* ViewController.h */,
 				8B8443BA1A32A94F00E04392 /* ViewController.m */,
 				8B8443BC1A32A94F00E04392 /* Main.storyboard */,
@@ -135,6 +136,13 @@
 				8B8443CD1A32A94F00E04392 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8BEEFAE11A40DB2600A8518F /* VIEW */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = VIEW;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
