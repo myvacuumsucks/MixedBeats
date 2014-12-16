@@ -39,7 +39,7 @@ NSString* redirectURL = @"somefancyname://test";
   
   [[UIApplication sharedApplication]openURL:url];
 }
-//asdf
+
 -(void)handleOAuthURL: (NSURL*) callbackURL {
   NSString* query = callbackURL.query;
   NSString *components = query;
