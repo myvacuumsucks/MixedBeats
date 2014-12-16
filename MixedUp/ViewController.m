@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSArray *beatsArray;
+@property (strong, nonatomic) UIViewController *playListVC;
 
 @end
 
