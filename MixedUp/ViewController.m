@@ -46,7 +46,6 @@
     [self addChildViewController:playlistVC];
     [playlistVC didMoveToParentViewController:self];
     Beat *beat = self.beatsArray[indexPath.row];
-//    NSLog(@"%@", beat.name);
     [playlistVC.playlistArray addObject:beat];
     NSLog(@"test test: %@", playlistVC.playlistArray.count);
 }
