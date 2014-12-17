@@ -60,23 +60,46 @@
             </objects>
             <point key="canvasLocation" x="154" y="80"/>
         </scene>
-        <!--Web View Controller-->
-        <scene sceneID="e3b-Lq-hNC">
+        <!--Playlist View Controller-->
+        <scene sceneID="cTn-U1-xgB">
             <objects>
-                <viewController id="7Yh-IY-Xhq" customClass="WebViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PLAYLIST_VC" id="rhM-tk-4Tc" customClass="PlaylistViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YAq-3e-uAO"/>
-                        <viewControllerLayoutGuide type="bottom" id="hW5-OI-Un6"/>
+                        <viewControllerLayoutGuide type="top" id="yff-vm-7eN"/>
+                        <viewControllerLayoutGuide type="bottom" id="M3a-kF-bhE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="NSd-Ac-CVh">
+                    <view key="view" contentMode="scaleToFill" id="fcH-TA-b8r">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TIb-CT-xmi">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CELL" id="hEw-T8-KOf">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hEw-T8-KOf" id="Ec7-7v-89x">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="M3a-kF-bhE" firstAttribute="top" secondItem="TIb-CT-xmi" secondAttribute="bottom" id="Oox-s7-PN4"/>
+                            <constraint firstItem="TIb-CT-xmi" firstAttribute="leading" secondItem="fcH-TA-b8r" secondAttribute="leading" id="R3b-TK-bZq"/>
+                            <constraint firstAttribute="trailing" secondItem="TIb-CT-xmi" secondAttribute="trailing" id="Z87-5o-PKV"/>
+                            <constraint firstItem="TIb-CT-xmi" firstAttribute="top" secondItem="fcH-TA-b8r" secondAttribute="top" id="eK5-gN-pgt"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="TIb-CT-xmi" id="dQ3-MR-tzo"/>
+                        <outlet property="tableViewGreen" destination="TIb-CT-xmi" id="JGp-PD-INq"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F2w-wh-S60" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QGy-oZ-hiq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="792" y="80"/>
+            <point key="canvasLocation" x="802" y="80"/>
         </scene>
     </scenes>
 </document>

@@ -83,5 +83,4 @@ NSString* redirectURL = @"somefancyname://test";
   [dataTask resume];
 }
 
-
 @end

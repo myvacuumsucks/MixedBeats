@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "NetworkController.h"
+#import "PlaylistViewController.h"
 
 @interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLSessionDelegate, UISearchBarDelegate, UIWebViewDelegate>
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar;
+@property (strong, nonatomic) NSArray *beatsArray;
 
 
 @end
