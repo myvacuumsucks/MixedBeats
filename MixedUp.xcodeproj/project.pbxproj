@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		453699991A40ED8900643029 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453699981A40ED8900643029 /* PlaylistViewController.m */; };
 		8B8443B51A32A94F00E04392 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443B41A32A94F00E04392 /* main.m */; };
 		8B8443B81A32A94F00E04392 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443B71A32A94F00E04392 /* AppDelegate.m */; };
 		8B8443BB1A32A94F00E04392 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443BA1A32A94F00E04392 /* ViewController.m */; };
@@ -29,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		453699971A40ED8900643029 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
+		453699981A40ED8900643029 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
 		8B8443AF1A32A94F00E04392 /* MixedUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixedUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8443B31A32A94F00E04392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B8443B41A32A94F00E04392 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -78,6 +81,8 @@
 		8B4435F81A40E48900ED509C /* CONTROLLER */ = {
 			isa = PBXGroup;
 			children = (
+				8B8443DA1A32BAB500E04392 /* NetworkController.h */,
+				8B8443DB1A32BAB500E04392 /* NetworkController.m */,
 			);
 			name = CONTROLLER;
 			sourceTree = "<group>";
@@ -106,13 +111,8 @@
 				8B8443B61A32A94F00E04392 /* AppDelegate.h */,
 				8B8443B71A32A94F00E04392 /* AppDelegate.m */,
 				8B0BC3921A40D3D90050405E /* MODEL */,
-				8B8443DA1A32BAB500E04392 /* NetworkController.h */,
 				8B4435F81A40E48900ED509C /* CONTROLLER */,
-				8B8443DB1A32BAB500E04392 /* NetworkController.m */,
 				8BEEFAE11A40DB2600A8518F /* VIEW */,
-				8B8443B91A32A94F00E04392 /* ViewController.h */,
-				8B8443BA1A32A94F00E04392 /* ViewController.m */,
-				8B8443BC1A32A94F00E04392 /* Main.storyboard */,
 				8B8443BF1A32A94F00E04392 /* Images.xcassets */,
 				8B8443C11A32A94F00E04392 /* LaunchScreen.xib */,
 				8B8443B21A32A94F00E04392 /* Supporting Files */,
@@ -149,6 +149,11 @@
 		8BEEFAE11A40DB2600A8518F /* VIEW */ = {
 			isa = PBXGroup;
 			children = (
+				8B8443B91A32A94F00E04392 /* ViewController.h */,
+				8B8443BA1A32A94F00E04392 /* ViewController.m */,
+				453699971A40ED8900643029 /* PlaylistViewController.h */,
+				453699981A40ED8900643029 /* PlaylistViewController.m */,
+				8B8443BC1A32A94F00E04392 /* Main.storyboard */,
 			);
 			name = VIEW;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 			files = (
 				8BD4F12C1A3912AD0060A610 /* Beat.m in Sources */,
 				8B8443DC1A32BAB500E04392 /* NetworkController.m in Sources */,
+				453699991A40ED8900643029 /* PlaylistViewController.m in Sources */,
 				8B8443BB1A32A94F00E04392 /* ViewController.m in Sources */,
 				8B8443B81A32A94F00E04392 /* AppDelegate.m in Sources */,
 				8B8443B51A32A94F00E04392 /* main.m in Sources */,

@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (strong, nonatomic) NSArray *beatsArray;
 
 @end
 
@@ -42,6 +41,15 @@
   return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PlaylistViewController *playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
+    [self addChildViewController:playlistVC];
+    [playlistVC didMoveToParentViewController:self];
+    Beat *beat = self.beatsArray[indexPath.row];
+    playlistVC.playlistArray = [[NSMutableArray alloc]init];
+    [playlistVC.playlistArray addObject:beat];
+    NSLog(@"test test: %@", playlistVC.playlistArray.count);
+}
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
   NSString *searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
@@ -52,7 +60,5 @@
   }];
   
 }
-
-
 
 @end
