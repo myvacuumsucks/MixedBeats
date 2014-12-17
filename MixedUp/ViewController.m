@@ -48,7 +48,7 @@
     Beat *beat = self.beatsArray[indexPath.row];
     playlistVC.playlistArray = [[NSMutableArray alloc]init];
     [playlistVC.playlistArray addObject:beat];
-    NSLog(@"test test: %@", playlistVC.playlistArray.count);
+//    NSLog(@"test test: %@", playlistVC.playlistArray.count);
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
