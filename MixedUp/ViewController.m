@@ -14,30 +14,48 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSArray *beatsArray;
-
+@property (strong, nonatomic) UIAlertController *alert;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
-  
-    
-  if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]) {
-    self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
-    NSLog(@"%@", self.token);
-  }else{
-    [[NetworkController sharedInstance]requestOAuthAccess];
-  }
-  
-  
+
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   self.searchBar.delegate = self;
 
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+  [super viewDidAppear: animated];
+  
+  if /*([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]])*/ (NO){
+    self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
+    NSLog(@"%@", self.token);
+  }else{
+    
+    self.alert = [UIAlertController alertControllerWithTitle:nil message:@"MixedBeats will present a web browser to BeatsMusic user athenication" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+       [[NetworkController sharedInstance]requestOAuthAccess];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+      
+    }];
+    
+    [self.alert addAction:okAction];
+    [self.alert addAction:cancelAction];
+    [self presentViewController:self.alert animated:YES completion:nil];
+    
+   
+  }
+  
+
+  
+  
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
   return self.beatsArray.count;
