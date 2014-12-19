@@ -30,6 +30,9 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dpf-qt-Ntz" id="JqW-Ux-WhC">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="rhM-tk-4Tc" kind="show" id="xkm-Cv-psu"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -94,7 +97,6 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="TIb-CT-xmi" id="dQ3-MR-tzo"/>
-                        <outlet property="tableViewGreen" destination="TIb-CT-xmi" id="JGp-PD-INq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGy-oZ-hiq" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -31,7 +31,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
-    cell.textLabel.text = self.playlistArray[indexPath.row];
+    cell.textLabel.text = [self.playlistArray objectAtIndex:indexPath.row];
     
     return cell;
     

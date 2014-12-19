@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) PlaylistViewController *playlistVC;
 
 @end
 
@@ -25,6 +26,10 @@
   self.tableView.dataSource = self;
   self.searchBar.delegate = self;
 
+    self.playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
+    [self addChildViewController:self.playlistVC];
+    [self.playlistVC didMoveToParentViewController:self];
+    self.playlistVC.playlistArray = [[NSMutableArray alloc]init];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -42,12 +47,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    PlaylistViewController *playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
-    [self addChildViewController:playlistVC];
-    [playlistVC didMoveToParentViewController:self];
+    
     Beat *beat = self.beatsArray[indexPath.row];
-    playlistVC.playlistArray = [[NSMutableArray alloc]init];
-    [playlistVC.playlistArray addObject:beat];
+    [self.playlistVC.playlistArray addObject:beat];
 //    NSLog(@"test test: %@", playlistVC.playlistArray.count);
 }
 
