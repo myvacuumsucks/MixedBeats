@@ -15,7 +15,6 @@
 
 @implementation NetworkController
 
-
 NSString* clientID = @"3nbxp96juh7spx6j9srkknhs";
 NSString* clientSecret = @"uSbQFBHZtJEvBxjg2dc2fhRs";
 NSString* oAuthURL = @"https://partner.api.beatsmusic.com/v1/oauth2/authorize";
@@ -58,20 +57,15 @@ NSString* redirectURL = @"somefancyname://test";
 
 }
 
-
 - (void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *beats))completionHandler {
   NSString *urlWithSearchTerm = [[NSString alloc] init];
   urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search?type=artist&q=%@+&client_id=t3uz7rxmzq2a57hnqdxjzwbh", name];
   
   
   NSURL *url = [[NSURL alloc] initWithString:urlWithSearchTerm];
-  
   NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-  
   NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-  
   NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
-  
   NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     
     if (error) {
@@ -95,6 +89,5 @@ NSString* redirectURL = @"somefancyname://test";
   
   [dataTask resume];
 }
-
 
 @end
