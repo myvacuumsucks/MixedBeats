@@ -48,14 +48,9 @@
     [self.alert addAction:okAction];
     [self.alert addAction:cancelAction];
     [self presentViewController:self.alert animated:YES completion:nil];
-    
-   
   }
-  
-
-  
-  
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
   return self.beatsArray.count;
