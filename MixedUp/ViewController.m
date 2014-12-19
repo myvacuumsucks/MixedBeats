@@ -13,7 +13,6 @@
 @property (strong, nonatomic) NSString *token;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (strong, nonatomic) NSArray *beatsArray;
 @property (strong, nonatomic) UIAlertController *alert;
 @end
 
@@ -31,7 +30,7 @@
 -(void)viewDidAppear:(BOOL)animated{
   [super viewDidAppear: animated];
   
-  if /*([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]])*/ (NO){
+  if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]){
     self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
     NSLog(@"%@", self.token);
   }else{
