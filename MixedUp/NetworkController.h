@@ -11,6 +11,7 @@
 #import "Beat.h"
 
 @interface NetworkController : NSObject
+@property (strong, nonatomic) NSString *token;
 
 +(NetworkController*)sharedInstance;
 

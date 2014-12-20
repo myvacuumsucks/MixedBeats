@@ -45,9 +45,16 @@ NSString* redirectURL = @"somefancyname://test";
   NSArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
   NSString* comp1 = [comp1Array lastObject];
   NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
-  NSString* token = [comp2Array firstObject];
+  self.token = [comp2Array firstObject];
+  
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  [defaults setValue:([NetworkController sharedInstance].token) forKey:@"authToken"];
+  [defaults synchronize];
 
-  NSLog(@"%@", token);
+  NSLog(@"%@", self.token);
+  
+
+
 }
 
 - (void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *beats))completionHandler {
