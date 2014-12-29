@@ -75,6 +75,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Beat *beat = self.beatsArray[indexPath.row];
     [self.playlistVC.playlistArray addObject:beat];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
   }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
