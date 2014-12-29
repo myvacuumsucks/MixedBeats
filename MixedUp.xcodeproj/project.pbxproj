@@ -81,6 +81,10 @@
 		8B4435F81A40E48900ED509C /* CONTROLLER */ = {
 			isa = PBXGroup;
 			children = (
+				8B8443B91A32A94F00E04392 /* ViewController.h */,
+				8B8443BA1A32A94F00E04392 /* ViewController.m */,
+				453699971A40ED8900643029 /* PlaylistViewController.h */,
+				453699981A40ED8900643029 /* PlaylistViewController.m */,
 				8B8443DA1A32BAB500E04392 /* NetworkController.h */,
 				8B8443DB1A32BAB500E04392 /* NetworkController.m */,
 			);
@@ -149,10 +153,6 @@
 		8BEEFAE11A40DB2600A8518F /* VIEW */ = {
 			isa = PBXGroup;
 			children = (
-				8B8443B91A32A94F00E04392 /* ViewController.h */,
-				8B8443BA1A32A94F00E04392 /* ViewController.m */,
-				453699971A40ED8900643029 /* PlaylistViewController.h */,
-				453699981A40ED8900643029 /* PlaylistViewController.m */,
 				8B8443BC1A32A94F00E04392 /* Main.storyboard */,
 			);
 			name = VIEW;

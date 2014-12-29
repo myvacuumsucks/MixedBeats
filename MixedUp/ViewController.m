@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) UIAlertController *alert;
+@property (strong, nonatomic) PlaylistViewController *playlistVC;
 @end
 
 @implementation ViewController
@@ -29,6 +30,13 @@
 
 -(void)viewDidAppear:(BOOL)animated{
   [super viewDidAppear: animated];
+  
+  self.playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
+  [self addChildViewController:self.playlistVC];
+  [self.playlistVC didMoveToParentViewController:self];
+  self.playlistVC.playlistArray = [[NSMutableArray alloc]init];
+
+
   
   if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]){
     self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
@@ -65,14 +73,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    PlaylistViewController *playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
-    [self addChildViewController:playlistVC];
-    [playlistVC didMoveToParentViewController:self];
     Beat *beat = self.beatsArray[indexPath.row];
-    playlistVC.playlistArray = [[NSMutableArray alloc]init];
-    [playlistVC.playlistArray addObject:beat];
-    NSLog(@"test test: %@", playlistVC.playlistArray.count);
-}
+    [self.playlistVC.playlistArray addObject:beat];
+  }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
   NSString *searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
