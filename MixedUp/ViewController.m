@@ -76,15 +76,6 @@
   return cell;
 }
 
-//-(void)cellSwipe:(UISwipeGestureRecognizer *)gesture
-//{
-//  NSLog(@"%@l", swipedIndexPath);
-//  
-////  Beat *beat = self.beatsArray[swipedIndexPath.row];
-////  [self.playlistVC.playlistArray addObject:beat];
-////  [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-//}
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Beat *beat = self.beatsArray[indexPath.row];
@@ -95,13 +86,8 @@
 -(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer {
   
   
-//  CGPoint location = [recognizer locationInView:self.tableView];
-//  NSIndexPath *swipedIndexPath = [self.tableView indexPathForSelectedRow];
-//  UITableViewCell *swipedCell  = [self.tableView cellForRowAtIndexPath:swipedIndexPath];
-//  NSLog(@"%lu",swipedIndexPath);
-//  
-  
-   [self presentViewController:self.playlistVC animated:YES completion:nil];
+  [self presentViewController:self.playlistVC animated:YES completion:nil];
+
   
   NSLog(@"Swipe received.");
 }
