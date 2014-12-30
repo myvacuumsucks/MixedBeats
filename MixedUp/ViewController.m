@@ -25,6 +25,10 @@
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   self.searchBar.delegate = self;
+  
+  UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
+  [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+  [self.view addGestureRecognizer:gestureRecognizer];
 
 }
 
@@ -32,8 +36,8 @@
   [super viewDidAppear: animated];
   
   self.playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
-  [self addChildViewController:self.playlistVC];
-  [self.playlistVC didMoveToParentViewController:self];
+//  [self addChildViewController:self.playlistVC];
+//  [self.playlistVC didMoveToParentViewController:self];
   self.playlistVC.playlistArray = [[NSMutableArray alloc]init];
 
 
@@ -72,11 +76,35 @@
   return cell;
 }
 
+//-(void)cellSwipe:(UISwipeGestureRecognizer *)gesture
+//{
+//  NSLog(@"%@l", swipedIndexPath);
+//  
+////  Beat *beat = self.beatsArray[swipedIndexPath.row];
+////  [self.playlistVC.playlistArray addObject:beat];
+////  [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+//}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Beat *beat = self.beatsArray[indexPath.row];
     [self.playlistVC.playlistArray addObject:beat];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
   }
+
+-(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer {
+  
+  
+//  CGPoint location = [recognizer locationInView:self.tableView];
+//  NSIndexPath *swipedIndexPath = [self.tableView indexPathForSelectedRow];
+//  UITableViewCell *swipedCell  = [self.tableView cellForRowAtIndexPath:swipedIndexPath];
+//  NSLog(@"%lu",swipedIndexPath);
+//  
+  
+   [self presentViewController:self.playlistVC animated:YES completion:nil];
+  
+  NSLog(@"Swipe received.");
+}
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
   NSString *searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
