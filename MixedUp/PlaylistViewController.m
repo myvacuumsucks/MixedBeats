@@ -10,7 +10,8 @@
 
 
 @interface PlaylistViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (IBAction)myPlaylistsButton:(id)sender;
 
 @end
 
@@ -18,30 +19,29 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  NSLog(@"Hello");
 
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
-    
-    
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return self.playlistArray.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
   Beat *beat = self.playlistArray[indexPath.row];
   cell.textLabel.text = beat.name;
-  
-    return cell;
-    
+  return cell;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (IBAction)myPlaylistsButton:(id)sender {
+  [[NetworkController sharedInstance] getMyPlaylists:([[NetworkController sharedInstance]user_ID]) completionHandler:^(NSError *error, NSMutableArray *playlists) {
+      self.playlistArray = playlists;
+      [self.tableView reloadData];
+  }];
 }
+
 
 @end

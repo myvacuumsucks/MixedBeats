@@ -30,10 +30,19 @@
     NSLog(@"json parsing unsuccessful. %@", error.localizedDescription);
   } else {
     NSArray *arrayOfEntry = JSONDictionary[@"data"];
-    for (NSDictionary *searchDictionary in arrayOfEntry) {
-      NSString *name = searchDictionary[@"display"];
-      Beat *newBeat = [[Beat alloc] initWithName:name];
-      [beats addObject:newBeat];
+    NSDictionary *data = arrayOfEntry[0];
+    if ([data[@"type"] isEqual: @"playlist"]) {
+      for (NSDictionary *searchDictionary in arrayOfEntry) {
+        NSString *name = searchDictionary[@"name"];
+        Beat *newBeat = [[Beat alloc] initWithName:name];
+        [beats addObject:newBeat];
+      }
+    } else {
+      for (NSDictionary *searchDictionary in arrayOfEntry) {
+        NSString *name = searchDictionary[@"display"];
+        Beat *newBeat = [[Beat alloc] initWithName:name];
+        [beats addObject:newBeat];
+      }
     }
     return beats;
   }

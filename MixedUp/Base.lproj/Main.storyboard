@@ -42,23 +42,15 @@
                             <constraint firstItem="FwW-Gm-0vc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zXD-2i-6Yl"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="aTa-aX-XQQ"/>
                     <connections>
                         <outlet property="searchBar" destination="eZM-rO-Jhl" id="k9b-sR-2Um"/>
-                        <outlet property="searchDisplayController" destination="7Ea-x8-V7l" id="oSW-Fd-nSa"/>
                         <outlet property="tableView" destination="FwW-Gm-0vc" id="uI5-BK-vAL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="7Ea-x8-V7l">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="Kyc-14-5Wl"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="9Ya-YR-ron"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="2OF-Ib-tcl"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="4MP-yZ-kmR"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="154" y="80"/>
+            <point key="canvasLocation" x="966" y="80"/>
         </scene>
         <!--Playlist View Controller-->
         <scene sceneID="cTn-U1-xgB">
@@ -73,7 +65,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TIb-CT-xmi">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CELL" id="hEw-T8-KOf">
@@ -84,12 +76,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YxL-Fd-kyE">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="My Playlists" id="2Cf-h2-7SJ">
+                                        <connections>
+                                            <action selector="myPlaylistsButton:" destination="rhM-tk-4Tc" id="cEu-I1-iZ1"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="M3a-kF-bhE" firstAttribute="top" secondItem="TIb-CT-xmi" secondAttribute="bottom" id="Oox-s7-PN4"/>
-                            <constraint firstItem="TIb-CT-xmi" firstAttribute="leading" secondItem="fcH-TA-b8r" secondAttribute="leading" id="R3b-TK-bZq"/>
-                            <constraint firstAttribute="trailing" secondItem="TIb-CT-xmi" secondAttribute="trailing" id="Z87-5o-PKV"/>
-                            <constraint firstItem="TIb-CT-xmi" firstAttribute="top" secondItem="fcH-TA-b8r" secondAttribute="top" id="eK5-gN-pgt"/>
+                            <constraint firstItem="YxL-Fd-kyE" firstAttribute="top" secondItem="TIb-CT-xmi" secondAttribute="bottom" id="3VJ-Yg-0Ql"/>
+                            <constraint firstItem="YxL-Fd-kyE" firstAttribute="leading" secondItem="fcH-TA-b8r" secondAttribute="leading" id="Byh-Sr-Mul"/>
+                            <constraint firstAttribute="trailing" secondItem="TIb-CT-xmi" secondAttribute="trailing" id="Gu1-k0-8Na"/>
+                            <constraint firstItem="TIb-CT-xmi" firstAttribute="top" secondItem="fcH-TA-b8r" secondAttribute="top" id="Na6-on-Dv3"/>
+                            <constraint firstItem="M3a-kF-bhE" firstAttribute="top" secondItem="TIb-CT-xmi" secondAttribute="bottom" constant="44" id="jO9-bQ-7FZ"/>
+                            <constraint firstItem="TIb-CT-xmi" firstAttribute="leading" secondItem="fcH-TA-b8r" secondAttribute="leading" id="m0O-O2-QGQ"/>
+                            <constraint firstItem="M3a-kF-bhE" firstAttribute="top" secondItem="YxL-Fd-kyE" secondAttribute="bottom" id="wir-jg-n2G"/>
+                            <constraint firstAttribute="trailing" secondItem="YxL-Fd-kyE" secondAttribute="trailing" id="zR3-li-F6U"/>
                         </constraints>
                     </view>
                     <connections>
@@ -98,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGy-oZ-hiq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="802" y="80"/>
+            <point key="canvasLocation" x="1614" y="80"/>
         </scene>
     </scenes>
 </document>

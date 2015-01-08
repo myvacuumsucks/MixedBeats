@@ -21,14 +21,20 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   self.searchBar.delegate = self;
   
-  UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
-  [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-  [self.view addGestureRecognizer:gestureRecognizer];
+  UISwipeGestureRecognizer *leftGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeHandler:)];
+  UISwipeGestureRecognizer *rightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandler:)];
+
+  [leftGestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+  [rightGestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+  
+
+  [self.view addGestureRecognizer:leftGestureRecognizer];
+  [self.view addGestureRecognizer:rightGestureRecognizer];
 
 }
 
@@ -36,15 +42,19 @@
   [super viewDidAppear: animated];
   
   self.playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
-//  [self addChildViewController:self.playlistVC];
-//  [self.playlistVC didMoveToParentViewController:self];
+  
   self.playlistVC.playlistArray = [[NSMutableArray alloc]init];
-
-
+  
+  self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * .98, 0, self.view.frame.size.width,self.view.frame.size.height);
+  
+  
   
   if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]){
     self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
-    NSLog(@"%@", self.token);
+    
+    NetworkController *sharedNetworkController = [NetworkController sharedInstance];
+    sharedNetworkController.token = self.token;
+    
   }else{
     
     self.alert = [UIAlertController alertControllerWithTitle:nil message:@"MixedBeats will present a web browser to BeatsMusic user athenication" preferredStyle:UIAlertControllerStyleAlert];
@@ -52,8 +62,8 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
        [[NetworkController sharedInstance]requestOAuthAccess];
     }];
+    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-      
     }];
     
     [self.alert addAction:okAction];
@@ -63,7 +73,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  
   return self.beatsArray.count;
 }
 
@@ -78,19 +87,37 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Beat *beat = self.beatsArray[indexPath.row];
-    [self.playlistVC.playlistArray addObject:beat];
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-  }
-
--(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer {
   
-  
-  [self presentViewController:self.playlistVC animated:YES completion:nil];
-
-  
-  NSLog(@"Swipe received.");
+  Beat *beat = self.beatsArray[indexPath.row];
+  [self.playlistVC.playlistArray addObject:beat];
+  [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+
+-(void)leftSwipeHandler:(UISwipeGestureRecognizer *)recognizer {
+  
+  [UIView animateWithDuration:0.4 animations:^{
+    [self.view addSubview:self.playlistVC.view];
+    [self.playlistVC didMoveToParentViewController:(self)];
+    [self addChildViewController:self.playlistVC];
+    self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * 0, 0, self.view.frame.size.width, self.view.frame.size.height);
+  } completion:^(BOOL finished) {
+    [self.playlistVC.tableView reloadData];
+    [[NetworkController sharedInstance]getMyUserID:@"kori" completionHandler:^(NSError *error, NSString *userID) {
+      NSLog(@"%@", userID);
+    }];
+  }];
+}
+
+-(void)rightSwipeHandler:(UISwipeGestureRecognizer *)recognizer {
+
+  [UIView animateWithDuration:0.3 animations:^{
+    self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * .98, 0, self.view.frame.size.width, self.view.frame.size.height);
+  } completion:^(BOOL finished) {
+  }];
+    
+}
+
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
   NSString *searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
