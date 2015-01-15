@@ -77,7 +77,7 @@ NSString* redirectURL = @"somefancyname://test";
         if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
           NSLog(@"success! code: %lu", httpURLResponse.statusCode);
           NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-          NSLog(@"The JSON: %@", json);
+            //NSLog(@"The JSON: %@", json);
           NSMutableArray *beats = [Beat parseJSONIntoBeats:data];
           [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
           }];
@@ -90,7 +90,7 @@ NSString* redirectURL = @"somefancyname://test";
   [dataTask resume];
 }
 
-- (void)getMyUserID:(NSString *)name completionHandler: (void(^)(NSError *error, NSString *userID))completionHandler {
+- (void)getMyUserID: (void(^)(NSError *error, NSString *userID))completionHandler {
     NSString *urlWithSearchTerm = [[NSString alloc] init];
     urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/me?access_token=%@", self.token];
   
@@ -110,7 +110,7 @@ NSString* redirectURL = @"somefancyname://test";
         if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
           NSLog(@"success! code: %lu", httpURLResponse.statusCode);
             NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"The JSON: %@", json);
+            //NSLog(@"The JSON: %@", json);
             NSString *components = json;
             NSArray* comp1Array= [components componentsSeparatedByString:@"user_context\":\""];
             NSString* comp1 = [comp1Array lastObject];
@@ -148,7 +148,7 @@ NSString* redirectURL = @"somefancyname://test";
         if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
           NSLog(@"success! code: %lu", httpURLResponse.statusCode);
           NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-          NSLog(@"The JSON: %@", json);
+            //NSLog(@"The JSON: %@", json);
           NSMutableArray *beats = [Beat parseJSONIntoBeats:data];
           [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
           }];

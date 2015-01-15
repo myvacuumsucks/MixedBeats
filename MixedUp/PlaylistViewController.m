@@ -17,11 +17,19 @@
 
 @implementation PlaylistViewController
 
+
+- (void) viewWillAppear:(BOOL)animated {
+  [super viewWillAppear: NO];
+    //self.playlistToolbar.barTintColor = [UIColor blueColor];
+  self.playlistToolbar.barStyle = UIBarStyleBlack;
+
+}
 - (void)viewDidLoad {
   [super viewDidLoad];
 
   self.tableView.dataSource = self;
   self.tableView.delegate = self;
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -37,6 +45,11 @@
 
 
 - (IBAction)myPlaylistsButton:(id)sender {
+  [[NetworkController sharedInstance]getMyUserID:^(NSError *error, NSString *userID) {
+    NSLog(@"%@", userID);
+  }];
+  
+
   [[NetworkController sharedInstance] getMyPlaylists:([[NetworkController sharedInstance]user_ID]) completionHandler:^(NSError *error, NSMutableArray *playlists) {
       self.playlistArray = playlists;
       [self.tableView reloadData];

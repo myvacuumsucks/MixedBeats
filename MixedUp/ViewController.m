@@ -45,9 +45,14 @@
   
   self.playlistVC.playlistArray = [[NSMutableArray alloc]init];
   
-  self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * .98, 0, self.view.frame.size.width,self.view.frame.size.height);
+  self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * 1.0, 0, self.view.frame.size.width,self.view.frame.size.height);
   
-  
+//  CGRect frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height -100, [[UIScreen mainScreen] bounds].size.width, 44);
+//  UIToolbar* toolBar = [[UIToolbar alloc]initWithFrame:frame];
+//  toolBar.barStyle = UIBarStyleBlackTranslucent;
+//  [toolBar sizeToFit];
+//
+//  [self.playlistVC.view addSubview:toolBar];
   
   if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]){
     self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
@@ -61,7 +66,8 @@
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
        [[NetworkController sharedInstance]requestOAuthAccess];
-    }];
+      
+          }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
     }];
@@ -96,16 +102,15 @@
 
 -(void)leftSwipeHandler:(UISwipeGestureRecognizer *)recognizer {
   
-  [UIView animateWithDuration:0.4 animations:^{
+  [UIView animateWithDuration:0.3 animations:^{
     [self.view addSubview:self.playlistVC.view];
     [self.playlistVC didMoveToParentViewController:(self)];
     [self addChildViewController:self.playlistVC];
     self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * 0, 0, self.view.frame.size.width, self.view.frame.size.height);
   } completion:^(BOOL finished) {
     [self.playlistVC.tableView reloadData];
-    [[NetworkController sharedInstance]getMyUserID:@"kori" completionHandler:^(NSError *error, NSString *userID) {
-      NSLog(@"%@", userID);
-    }];
+    
+    
   }];
 }
 

@@ -99,6 +99,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="playlistToolbar" destination="YxL-Fd-kyE" id="nYI-Nr-XMC"/>
                         <outlet property="tableView" destination="TIb-CT-xmi" id="dQ3-MR-tzo"/>
                     </connections>
                 </viewController>

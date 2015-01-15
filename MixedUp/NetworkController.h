@@ -21,5 +21,5 @@
 -(void)handleOAuthURL: (NSURL*) callbackURL;
 -(void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *beats))completionHandler;
 -(void)getMyPlaylists:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *playlists))completionHandler;
--(void)getMyUserID:(NSString *)name completionHandler: (void(^)(NSError *error, NSString *userID))completionHandler;
+-(void)getMyUserID: (void(^)(NSError *error, NSString *userID))completionHandler;
 @end
