@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
+#import "NetworkController.h"
 
 
 @interface PlaylistViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSMutableArray *playlistArray;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIToolbar *playlistToolbar;
 
 @end

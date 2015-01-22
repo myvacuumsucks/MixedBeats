@@ -12,10 +12,14 @@
 
 @interface NetworkController : NSObject
 @property (strong, nonatomic) NSString *token;
+@property (strong, nonatomic) NSString* user_ID;
+
 
 +(NetworkController*)sharedInstance;
 
 -(void)requestOAuthAccess;
 -(void)handleOAuthURL: (NSURL*) callbackURL;
 -(void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *beats))completionHandler;
+-(void)getMyPlaylists:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *playlists))completionHandler;
+-(void)getMyUserID: (void(^)(NSError *error, NSString *userID))completionHandler;
 @end

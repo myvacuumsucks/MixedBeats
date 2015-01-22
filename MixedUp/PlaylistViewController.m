@@ -10,12 +10,20 @@
 
 
 @interface PlaylistViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (IBAction)myPlaylistsButton:(id)sender;
 
 @end
 
 @implementation PlaylistViewController
 
+
+- (void) viewWillAppear:(BOOL)animated {
+  [super viewWillAppear: NO];
+    //self.playlistToolbar.barTintColor = [UIColor blueColor];
+  self.playlistToolbar.barStyle = UIBarStyleBlack;
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -24,21 +32,29 @@
     
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.playlistArray.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return self.playlistArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
-    cell.textLabel.text = [self.playlistArray objectAtIndex:indexPath.row];
-    
-    return cell;
-    
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
+  Beat *beat = self.playlistArray[indexPath.row];
+  cell.textLabel.text = beat.name;
+  return cell;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (IBAction)myPlaylistsButton:(id)sender {
+  [[NetworkController sharedInstance]getMyUserID:^(NSError *error, NSString *userID) {
+    NSLog(@"%@", userID);
+  }];
+  
+
+  [[NetworkController sharedInstance] getMyPlaylists:([[NetworkController sharedInstance]user_ID]) completionHandler:^(NSError *error, NSMutableArray *playlists) {
+      self.playlistArray = playlists;
+      [self.tableView reloadData];
+  }];
 }
+
 
 @end
