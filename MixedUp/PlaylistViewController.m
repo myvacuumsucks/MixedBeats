@@ -22,7 +22,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

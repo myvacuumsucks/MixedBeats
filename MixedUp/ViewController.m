@@ -13,12 +13,9 @@
 @property (strong, nonatomic) NSString *token;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-<<<<<<< HEAD
 @property (strong, nonatomic) PlaylistViewController *playlistVC;
-
-=======
 @property (strong, nonatomic) UIAlertController *alert;
->>>>>>> 3a54e9b6eabfbdb33e491224f199b64672578313
+
 @end
 
 @implementation ViewController
