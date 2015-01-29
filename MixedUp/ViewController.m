@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) PlaylistViewController *playlistVC;
 @property (strong, nonatomic) UIAlertController *alert;
+@property (strong, nonatomic) NSArray *beatSectionTitles;
+@property (strong, nonatomic) NSDictionary* beats;
 
 @end
 
