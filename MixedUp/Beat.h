@@ -12,6 +12,6 @@
 
 @property (strong, nonatomic) NSString *name;
 
-+ (NSMutableArray *)parseJSONIntoBeats:(NSData *)rawJSONData;
++ (NSDictionary *)parseJSONIntoBeats:(NSData *)rawJSONData;
 
 @end

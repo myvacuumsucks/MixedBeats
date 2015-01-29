@@ -10,6 +10,7 @@
 
 @interface ViewController ()
 
+
 @property (strong, nonatomic) NSString *token;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -22,7 +23,9 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+   // beatSectionTitles = @[@"Artistis",@"Albums",@"Tracks"];
   
+    
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   self.searchBar.delegate = self;
@@ -43,21 +46,12 @@
   [super viewDidAppear: animated];
   
   self.playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
-  
   self.playlistVC.playlistArray = [[NSMutableArray alloc]init];
-  
   self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * 1.0, 0, self.view.frame.size.width,self.view.frame.size.height);
   
-//  CGRect frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height -100, [[UIScreen mainScreen] bounds].size.width, 44);
-//  UIToolbar* toolBar = [[UIToolbar alloc]initWithFrame:frame];
-//  toolBar.barStyle = UIBarStyleBlackTranslucent;
-//  [toolBar sizeToFit];
-//
-//  [self.playlistVC.view addSubview:toolBar];
   
   if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]){
     self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
-    
     NetworkController *sharedNetworkController = [NetworkController sharedInstance];
     sharedNetworkController.token = self.token;
     
@@ -79,15 +73,45 @@
   }
 }
 
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSString *searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    
+    [[NetworkController sharedInstance] searchTerm:searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
+        self.beats = beats;
+        self.beatSectionTitles = [beats allKeys];
+        
+        //self.beatsArray = beats;
+        [self.tableView reloadData];
+    }];
+    
+}
+
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
+    return [self.beatSectionTitles count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [self.beatSectionTitles objectAtIndex:section];
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return self.beatsArray.count;
+     NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:section];
+      NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
+    return [sectionNames count];
+ // return self.beatsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
-  Beat *beat = self.beatsArray[indexPath.row];
-  cell.textLabel.text = beat.name;
+//  Beat *beat = self.beatsArray[indexPath.row];
+//  cell.textLabel.text = beat.name;
+    
+    NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:indexPath.section];
+    NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
+    NSDictionary *beat = [sectionNames objectAtIndex:indexPath.row];
+    cell.textLabel.text = beat[@"display"];
+    //cell.imageView.image = [UIImage imageNamed:[self getImageFilename:animal]];
+    
   
   return cell;
 }
@@ -125,14 +149,5 @@
 }
 
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-  NSString *searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-  
-  [[NetworkController sharedInstance] searchTerm:searchTerm completionHandler:^(NSError *error, NSMutableArray *beats) {
-    self.beatsArray = beats;
-    [self.tableView reloadData];
-  }];
-  
-}
 
 @end
