@@ -59,7 +59,7 @@ NSString* redirectURL = @"somefancyname://test";
 
 - (void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler {
   NSString *urlWithSearchTerm = [[NSString alloc] init];
-  urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search/federated?q=%@&limit=20&offset=0&client_id=3nbxp96juh7spx6j9srkknhs", name];
+  urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search/predictive?q=%@&limit=20&offset=0&client_id=3nbxp96juh7spx6j9srkknhs", name];
     
     
   
