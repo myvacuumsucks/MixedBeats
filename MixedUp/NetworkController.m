@@ -52,12 +52,15 @@ NSString* redirectURL = @"somefancyname://test";
   [defaults synchronize];
 
   NSLog(@"%@", self.token);
+  
+    //test test
+
 
 }
 
-- (void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler {
+- (void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *beats))completionHandler {
   NSString *urlWithSearchTerm = [[NSString alloc] init];
-  urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search/predictive?type=artist&q=%@+&client_id=t3uz7rxmzq2a57hnqdxjzwbh", name];
+  urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search?type=artist&q=%@+&client_id=t3uz7rxmzq2a57hnqdxjzwbh", name];
   
   
   NSURL *url = [[NSURL alloc] initWithString:urlWithSearchTerm];
@@ -76,7 +79,7 @@ NSString* redirectURL = @"somefancyname://test";
           NSLog(@"success! code: %lu", httpURLResponse.statusCode);
           NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             //NSLog(@"The JSON: %@", json);
-          NSDictionary *beats = [Beat parseJSONIntoBeats:data];
+          NSMutableArray *beats = [Beat parseJSONIntoBeats:data];
           [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
           }];
         }
@@ -108,7 +111,7 @@ NSString* redirectURL = @"somefancyname://test";
         if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
           NSLog(@"success! code: %lu", httpURLResponse.statusCode);
             NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"The JSON: %@", json);
+            //NSLog(@"The JSON: %@", json);
             NSString *components = json;
             NSArray* comp1Array= [components componentsSeparatedByString:@"user_context\":\""];
             NSString* comp1 = [comp1Array lastObject];
