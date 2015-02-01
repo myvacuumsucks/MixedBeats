@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h> 
+#import <UIKit/UIKit.h>
 #import "Beat.h"
 
 @interface NetworkController : NSObject
@@ -19,7 +19,7 @@
 
 -(void)requestOAuthAccess;
 -(void)handleOAuthURL: (NSURL*) callbackURL;
--(void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler;
+-(void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *beats))completionHandler;
 -(void)getMyPlaylists:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *playlists))completionHandler;
 -(void)getMyUserID: (void(^)(NSError *error, NSString *userID))completionHandler;
 @end

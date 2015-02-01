@@ -24,140 +24,143 @@ NSString* redirectURL = @"somefancyname://test";
 
 + (NetworkController*)sharedInstance
 {
-  static NetworkController *_sharedInstance = nil;
-  static dispatch_once_t oncePredicate;
-  dispatch_once(&oncePredicate, ^{
-    _sharedInstance = [[NetworkController alloc] init];
-  });
-  return _sharedInstance;
+    static NetworkController *_sharedInstance = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _sharedInstance = [[NetworkController alloc] init];
+    });
+    return _sharedInstance;
 }
 
 -(void)requestOAuthAccess {
-  NSString *loginURL = [NSString stringWithFormat: @"%@?response_type=%@&redirect_uri=%@&client_id=%@", oAuthURL, response_type, redirectURL, clientID];
-  NSURL* url = [NSURL URLWithString:loginURL];
-  
-  [[UIApplication sharedApplication]openURL:url];
+    NSString *loginURL = [NSString stringWithFormat: @"%@?response_type=%@&redirect_uri=%@&client_id=%@", oAuthURL, response_type, redirectURL, clientID];
+    NSURL* url = [NSURL URLWithString:loginURL];
+    
+    [[UIApplication sharedApplication]openURL:url];
 }
 
 -(void)handleOAuthURL: (NSURL*) callbackURL {
-  NSString* query = callbackURL.query;
-  NSString *components = query;
-  NSArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
-  NSString* comp1 = [comp1Array lastObject];
-  NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
-  self.token = [comp2Array firstObject];
-  
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  [defaults setValue:([NetworkController sharedInstance].token) forKey:@"authToken"];
-  [defaults synchronize];
-
-  NSLog(@"%@", self.token);
-
+    NSString* query = callbackURL.query;
+    NSString *components = query;
+    NSArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
+    NSString* comp1 = [comp1Array lastObject];
+    NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
+    self.token = [comp2Array firstObject];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:([NetworkController sharedInstance].token) forKey:@"authToken"];
+    [defaults synchronize];
+    
+    NSLog(@"%@", self.token);
+    
+    //test test
+    
+    
 }
 
-- (void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler {
-  NSString *urlWithSearchTerm = [[NSString alloc] init];
-  urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search/predictive?type=artist&q=%@+&client_id=t3uz7rxmzq2a57hnqdxjzwbh", name];
-  
-  
-  NSURL *url = [[NSURL alloc] initWithString:urlWithSearchTerm];
-  NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-  NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-  NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
-  NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+- (void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *beats))completionHandler {
+    NSString *urlWithSearchTerm = [[NSString alloc] init];
+    urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search?type=artist&q=%@+&client_id=t3uz7rxmzq2a57hnqdxjzwbh", name];
     
-    if (error) {
-      NSLog(@"%@", error.localizedDescription);
-    } else {
-      
-      if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-        NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
-        if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
-          NSLog(@"success! code: %lu", httpURLResponse.statusCode);
-          NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            //NSLog(@"The JSON: %@", json);
-          NSDictionary *beats = [Beat parseJSONIntoBeats:data];
-          [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
-          }];
+    
+    NSURL *url = [[NSURL alloc] initWithString:urlWithSearchTerm];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            
+            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
+                if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
+                    NSLog(@"success! code: %lu", httpURLResponse.statusCode);
+                    NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    //NSLog(@"The JSON: %@", json);
+                    NSMutableArray *beats = [Beat parseJSONIntoBeats:data];
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
+                    }];
+                }
+            }
         }
-      }
-    }
+        
+    }];
     
-  }];
-  
-  [dataTask resume];
+    [dataTask resume];
 }
 
 - (void)getMyUserID: (void(^)(NSError *error, NSString *userID))completionHandler {
     NSString *urlWithSearchTerm = [[NSString alloc] init];
     urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/me?access_token=%@", self.token];
-  
-  
-  NSURL *url = [[NSURL alloc] initWithString:urlWithSearchTerm];
-  NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-  NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-  NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
-  NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     
-    if (error) {
-      NSLog(@"%@", error.localizedDescription);
-    } else {
-      
-      if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-        NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
-        if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
-          NSLog(@"success! code: %lu", httpURLResponse.statusCode);
-            NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"The JSON: %@", json);
-            NSString *components = json;
-            NSArray* comp1Array= [components componentsSeparatedByString:@"user_context\":\""];
-            NSString* comp1 = [comp1Array lastObject];
-            NSArray* comp2Array = [comp1 componentsSeparatedByString:@"\",\"extended"];
-            self.user_ID = [comp2Array firstObject];
-          [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, self.user_ID);
-          }];
-
+    
+    NSURL *url = [[NSURL alloc] initWithString:urlWithSearchTerm];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            
+            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
+                if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
+                    NSLog(@"success! code: %lu", httpURLResponse.statusCode);
+                    NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    //NSLog(@"The JSON: %@", json);
+                    NSString *components = json;
+                    NSArray* comp1Array= [components componentsSeparatedByString:@"user_context\":\""];
+                    NSString* comp1 = [comp1Array lastObject];
+                    NSArray* comp2Array = [comp1 componentsSeparatedByString:@"\",\"extended"];
+                    self.user_ID = [comp2Array firstObject];
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, self.user_ID);
+                    }];
+                    
+                }
+            }
         }
-      }
-    }
+        
+    }];
     
-  }];
-  
-  [dataTask resume];
+    [dataTask resume];
 }
 
 - (void)getMyPlaylists:(NSString *)userID completionHandler: (void(^)(NSError *error, NSMutableArray *playlists))completionHandler {
-  
-  NSString *urlWithSearchTerm = [[NSString alloc] init];
-  urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/users/%@/playlists?limit=20&offset=0&access_token=%@", self.user_ID, self.token];
-  
-  NSURL *url = [[NSURL alloc] initWithString:urlWithSearchTerm];
-  NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-  NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-  NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
-  NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
     
-    if (error) {
-      NSLog(@"%@", error.localizedDescription);
-    } else {
-      
-      if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-        NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
-        if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
-          NSLog(@"success! code: %lu", httpURLResponse.statusCode);
-          NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            //NSLog(@"The JSON: %@", json);
-          NSMutableArray *beats = [Beat parseJSONIntoBeats:data];
-          [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
-          }];
-          
+    NSString *urlWithSearchTerm = [[NSString alloc] init];
+    urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/users/%@/playlists?limit=20&offset=0&access_token=%@", self.user_ID, self.token];
+    
+    NSURL *url = [[NSURL alloc] initWithString:urlWithSearchTerm];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            
+            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
+                if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
+                    NSLog(@"success! code: %lu", httpURLResponse.statusCode);
+                    NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    //NSLog(@"The JSON: %@", json);
+                    NSMutableArray *beats = [Beat parseJSONIntoBeats:data];
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
+                    }];
+                    
+                }
+            }
         }
-      }
-    }
+        
+    }];
     
-  }];
-  
-  [dataTask resume];
+    [dataTask resume];
 }
 
 
