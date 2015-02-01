@@ -126,7 +126,6 @@
   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-
 -(void)leftSwipeHandler:(UISwipeGestureRecognizer *)recognizer {
   
   [UIView animateWithDuration:0.3 animations:^{
@@ -136,7 +135,6 @@
     self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * 0, 0, self.view.frame.size.width, self.view.frame.size.height);
   } completion:^(BOOL finished) {
     [self.playlistVC.tableView reloadData];
-    
     
   }];
 }
