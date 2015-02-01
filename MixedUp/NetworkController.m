@@ -43,6 +43,7 @@ NSString* redirectURL = @"somefancyname://test";
   NSString* query = callbackURL.query;
   NSString *components = query;
   NSArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
+    NSLog(@"SeparatedByString: %@, Components: %@", comp1Array, components);
   NSString* comp1 = [comp1Array lastObject];
   NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
   self.token = [comp2Array firstObject];
