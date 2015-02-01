@@ -62,7 +62,7 @@
         
     }else{
         
-        self.alert = [UIAlertController alertControllerWithTitle:nil message:@"MixedBeats will present a web browser to BeatsMusic user athenication" preferredStyle:UIAlertControllerStyleAlert];
+        self.alert = [UIAlertController alertControllerWithTitle:nil message:@"MixedBeats will present a web browser to BeatsMusic user authentication" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             [[NetworkController sharedInstance]requestOAuthAccess];
@@ -73,7 +73,7 @@
         }];
         
         [self.alert addAction:okAction];
-        [self.alert addAction:cancelAction];
+        [self.alert addAction:cancelAction];    
         [self presentViewController:self.alert animated:YES completion:nil];
     }
 }
@@ -117,7 +117,7 @@
 -(void)rightSwipeHandler:(UISwipeGestureRecognizer *)recognizer {
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * .98, 0, self.view.frame.size.width, self.view.frame.size.height);
+        self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * .95, 0, self.view.frame.size.width, self.view.frame.size.height);
     } completion:^(BOOL finished) {
     }];
     
