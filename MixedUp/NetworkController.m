@@ -90,6 +90,11 @@ NSString* redirectURL = @"somefancyname://test";
   [dataTask resume];
 }
 
+//- (void)showAllResults(IBAction *) {
+//    
+//}
+
+
 - (void)getMyUserID: (void(^)(NSError *error, NSString *userID))completionHandler {
     NSString *urlWithSearchTerm = [[NSString alloc] init];
     urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/me?access_token=%@", self.token];
