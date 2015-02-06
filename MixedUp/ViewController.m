@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-   // beatSectionTitles = @[@"Artistis",@"Albums",@"Tracks"];
+//    self.beatSectionTitles = @[@"artists",@"albums",@"tracks"];
   
     
   self.tableView.delegate = self;
@@ -100,6 +100,38 @@
       NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
     return [sectionNames count];
  // return self.beatsArray.count;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 10.0, 320.0, 22.0)];
+    customView.backgroundColor = [UIColor blackColor];
+    
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(11, 40, 50, 50)];
+    UIButton *seeAllButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 40, 50, 50)];
+    seeAllButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    NSString *string = [self.beatSectionTitles objectAtIndex:section];
+    NSString *beginning = [NSString stringWithFormat:@"all %@", string];
+    
+    [seeAllButton setTitle:beginning forState:UIControlStateNormal];
+    seeAllButton.frame = CGRectMake(285, 0, 100, 20);
+    [seeAllButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    
+    headerLabel.opaque = NO;
+    headerLabel.textColor = [UIColor redColor];
+    headerLabel.font = [UIFont boldSystemFontOfSize:18];
+    headerLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
+    headerLabel.shadowColor = [UIColor colorWithRed:255.0 green:255.0 blue:102.0 alpha:0.5];
+    headerLabel.frame = CGRectMake(11, 1, 353.0, 20.0);
+    headerLabel.text = [self.beatSectionTitles objectAtIndex:section];
+    
+    
+    
+    [customView addSubview:headerLabel];
+    [customView addSubview:seeAllButton];
+    
+    return customView;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -30,7 +30,7 @@
   if (error != nil) {
     NSLog(@"json parsing unsuccessful. %@", error.localizedDescription);
   } else {
-    NSLog(@"%@", JSONDictionary);
+    NSLog(@"JSON Dict: %@", JSONDictionary);
     NSDictionary *dataDictionary = JSONDictionary[@"data"];
      
       

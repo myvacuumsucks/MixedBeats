@@ -61,8 +61,6 @@ NSString* redirectURL = @"somefancyname://test";
   NSString *urlWithSearchTerm = [[NSString alloc] init];
   urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search/federated?q=%@&limit=20&offset=0&client_id=3nbxp96juh7spx6j9srkknhs", name];
     
-    
-  
   
   NSURL *url = [[NSURL alloc] initWithString:urlWithSearchTerm];
   NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
