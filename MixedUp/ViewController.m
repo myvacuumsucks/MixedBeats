@@ -102,6 +102,7 @@
  // return self.beatsArray.count;
 }
 
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 10.0, 320.0, 22.0)];
@@ -125,6 +126,7 @@
     headerLabel.frame = CGRectMake(11, 1, 353.0, 20.0);
     headerLabel.text = [self.beatSectionTitles objectAtIndex:section];
     
+
     
     
     [customView addSubview:headerLabel];

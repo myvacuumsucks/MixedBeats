@@ -22,4 +22,5 @@
 -(void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler;
 -(void)getMyPlaylists:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *playlists))completionHandler;
 -(void)getMyUserID: (void(^)(NSError *error, NSString *userID))completionHandler;
+-(void)showAllResults:(UIButton *)clicked;
 @end

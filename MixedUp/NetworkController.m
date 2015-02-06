@@ -57,6 +57,10 @@ NSString* redirectURL = @"somefancyname://test";
 
 }
 
+-(void)showAllResults:(UIButton *)clicked {
+    NSLog(@"Test");
+}
+
 - (void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler {
   NSString *urlWithSearchTerm = [[NSString alloc] init];
   urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search/federated?q=%@&limit=20&offset=0&client_id=3nbxp96juh7spx6j9srkknhs", name];
@@ -89,11 +93,6 @@ NSString* redirectURL = @"somefancyname://test";
   
   [dataTask resume];
 }
-
-//- (void)showAllResults(IBAction *) {
-//    
-//}
-
 
 - (void)getMyUserID: (void(^)(NSError *error, NSString *userID))completionHandler {
     NSString *urlWithSearchTerm = [[NSString alloc] init];
