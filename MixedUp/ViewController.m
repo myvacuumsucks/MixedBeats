@@ -92,9 +92,48 @@
     return [self.beatSectionTitles count];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [self.beatSectionTitles objectAtIndex:section];
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    return [self.beatSectionTitles objectAtIndex:section];
+//}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    /* Create custom view to display section header... */
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 55, 18)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setTag:section];
+    
+    if (button.tag == 0) {
+        [button addTarget:self action:@selector(moreArtistButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }else if (button.tag == 1) {
+        [button addTarget:self action:@selector(moreAlbumsButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }else{
+        [button addTarget:self action:@selector(moreTracksButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+
+    [button setTitle:@"more>" forState:UIControlStateNormal];
+    [button sizeToFit];
+    button.center = CGPointMake(tableView.frame.size.width - 50, 9);
+    
+    
+    
+    
+    
+    [label setFont:[UIFont boldSystemFontOfSize:16]];
+    NSString *string = [self.beatSectionTitles objectAtIndex:section];
+    /* Section header is in 0th index... */
+    [label setText:string];
+    [view addSubview:label];
+    [view addSubview:button];
+    
+    //[view addSubview:button];
+    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+    return view;
 }
+
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
      NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:section];
       NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
@@ -150,6 +189,18 @@
     
 }
 
+-(void)moreArtistButtonAction{
+    NSLog(@"More Artist");
+};
+
+-(void)moreAlbumsButtonAction{
+    NSLog(@"More Albums");
+
+}
+-(void)moreTracksButtonAction{
+    NSLog(@"More Tracks");
+
+}
 
 
 @end

@@ -78,8 +78,8 @@ NSString* redirectURL = @"somefancyname://test";
         NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
         if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
           NSLog(@"success! code: %lu", httpURLResponse.statusCode);
-          NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            //NSLog(@"The JSON: %@", json);
+          //NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+          //NSLog(@"The JSON: %@", json);
           NSDictionary *beats = [Beat parseJSONIntoBeats:data];
           [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
           }];
@@ -149,7 +149,7 @@ NSString* redirectURL = @"somefancyname://test";
         NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
         if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
           NSLog(@"success! code: %lu", httpURLResponse.statusCode);
-          NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+          //NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             //NSLog(@"The JSON: %@", json);
           NSMutableArray *beats = [Beat parseJSONIntoBeats:data];
           [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
