@@ -18,12 +18,13 @@
 @property (strong, nonatomic) PlaylistViewController *playlistVC;
 @property (strong, nonatomic)  NSArray* beatSectionTitles;
 @property (strong, nonatomic) NSDictionary* beats;
+@property (strong, nonatomic)  NSString *searchTerm;
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
   [super viewDidLoad];
    // beatSectionTitles = @[@"Artistis",@"Albums",@"Tracks"];
   
@@ -76,13 +77,12 @@
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSString *searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    self.searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
-    [[NetworkController sharedInstance] searchTerm:searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
+    [[NetworkController sharedInstance] federatedSearchTerm:self.searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
         self.beats = beats;
         self.beatSectionTitles = [beats allKeys];
         
-        //self.beatsArray = beats;
         [self.tableView reloadData];
     }];
     
@@ -91,10 +91,6 @@
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     return [self.beatSectionTitles count];
 }
-
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    return [self.beatSectionTitles objectAtIndex:section];
-//}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -132,16 +128,14 @@
     return view;
 }
 
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
      NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:section];
       NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
     return [sectionNames count];
  // return self.beatsArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
 //  Beat *beat = self.beatsArray[indexPath.row];
@@ -158,7 +152,7 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   
   Beat *beat = self.beatsArray[indexPath.row];
   [self.playlistVC.playlistArray addObject:beat];
@@ -191,12 +185,18 @@
 
 -(void)moreArtistButtonAction{
     NSLog(@"More Artist");
-};
+    [[NetworkController sharedInstance] moreSearchTerm:self.searchTerm type:@"artist" completionHandler:^(NSError *error, NSDictionary *beats) {
+        self.beats = beats;
+        self.beatSectionTitles = [beats allKeys];
+        
+        [self.tableView reloadData];
+    }];
+}
 
 -(void)moreAlbumsButtonAction{
     NSLog(@"More Albums");
-
 }
+
 -(void)moreTracksButtonAction{
     NSLog(@"More Tracks");
 

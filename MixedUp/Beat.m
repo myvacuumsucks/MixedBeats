@@ -31,16 +31,30 @@
     NSLog(@"json parsing unsuccessful. %@", error.localizedDescription);
   } else {
     NSLog(@"%@", JSONDictionary);
-    NSDictionary *dataDictionary = JSONDictionary[@"data"];
-     
       
-    NSArray *artistsArray = dataDictionary[@"artists"];
-    NSArray *albumsArray = dataDictionary[@"albums"];
-    NSArray *tracksArray = dataDictionary[@"tracks"];
-      beats = @{@"artists" : artistsArray,
-                @"albums" : albumsArray,
-                @"tracks" : tracksArray
-                };
+      id JSONData = [JSONDictionary valueForKeyPath:@"data"];
+      if ([JSONData isKindOfClass:[NSDictionary class]]) {
+          
+          NSArray *artistsArray = JSONData[@"artists"];
+          NSArray *albumsArray = JSONData[@"albums"];
+          NSArray *tracksArray = JSONData[@"tracks"];
+          beats = @{@"artists" : artistsArray,
+                    @"albums" : albumsArray,
+                    @"tracks" : tracksArray
+                    };
+
+      } else {
+          if ([JSONData isKindOfClass:[NSArray class]]) {
+              NSArray *artistsArray = JSONData;
+              
+              NSLog(@"data dictionary: %@", JSONData);
+              beats = @{@"artists" : artistsArray,
+                        };
+          }
+      }
+      
+//    NSDictionary *dataDictionary = JSONDictionary[@"data"];
+     
       
   }
     return beats;
