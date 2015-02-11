@@ -51,12 +51,6 @@
   
   self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * 1.0, 0, self.view.frame.size.width,self.view.frame.size.height);
   
-//  CGRect frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height -100, [[UIScreen mainScreen] bounds].size.width, 44);
-//  UIToolbar* toolBar = [[UIToolbar alloc]initWithFrame:frame];
-//  toolBar.barStyle = UIBarStyleBlackTranslucent;
-//  [toolBar sizeToFit];
-//
-//  [self.playlistVC.view addSubview:toolBar];
   
   if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]){
     self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
@@ -92,7 +86,7 @@
     [[NetworkController sharedInstance] federatedSearchTerm:self.searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
         self.beats = beats;
         self.beatSectionTitles = [beats allKeys];
-        
+                
         [self.tableView reloadData];
     }];
     
@@ -148,8 +142,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
-  Beat *beat = self.beatsArray[indexPath.row];
-  cell.textLabel.text = beat.name;
+    NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:indexPath.section];
+    NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
+    NSDictionary *beat = [sectionNames objectAtIndex:indexPath.row];
+  cell.textLabel.text = beat[@"display"];
   
   return cell;
 }
