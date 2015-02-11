@@ -173,14 +173,13 @@
 
 -(void)moreTracksButtonAction{
     NSLog(@"More Tracks");
-
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSString *searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];  
+    self.searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
   
     [[NetworkController sharedInstance] federatedSearchTerm:self.searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
-        self.beatsArray = beats;
+        self.beats = beats;
         [self.tableView reloadData];
     }];
     

@@ -20,8 +20,8 @@
     return self;
 }
 
-+ (NSMutableArray *)parseJSONIntoBeats:(NSData *)rawJSONData {
-    NSMutableArray *beats = [[NSMutableArray alloc] init];
++ (NSDictionary *)parseJSONIntoBeats:(NSData *)rawJSONData {
+    NSDictionary *beats = [[NSDictionary alloc] init];
     
     NSError *error = nil;
     NSDictionary *JSONDictionary = [NSJSONSerialization JSONObjectWithData:rawJSONData options:0 error:&error];

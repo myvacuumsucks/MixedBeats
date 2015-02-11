@@ -163,7 +163,7 @@ NSString* redirectURL = @"somefancyname://test";
     [dataTask resume];
 }
 
-- (void)getMyPlaylists:(NSString *)userID completionHandler: (void(^)(NSError *error, NSMutableArray *playlists))completionHandler {
+- (void)getMyPlaylists:(NSString *)userID completionHandler: (void(^)(NSError *error, NSDictionary *playlists))completionHandler {
   
     NSString *urlWithSearchTerm = [[NSString alloc] init];
     urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/users/%@/playlists?limit=20&offset=0&access_token=%@", self.user_ID, self.token];
@@ -185,7 +185,7 @@ NSString* redirectURL = @"somefancyname://test";
           NSLog(@"success! code: %lu", httpURLResponse.statusCode);
           //NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             //NSLog(@"The JSON: %@", json);
-          NSMutableArray *beats = [Beat parseJSONIntoBeats:data];
+          NSDictionary *beats = [Beat parseJSONIntoBeats:data];
           [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
           }];
           
@@ -197,8 +197,5 @@ NSString* redirectURL = @"somefancyname://test";
     
     [dataTask resume];
 }
-    
-
-
 
 @end
