@@ -25,7 +25,6 @@
 
 -(void)viewDidLoad {
   [super viewDidLoad];
-  //    self.beatSectionTitles = @[@"artists",@"albums",@"tracks"];
   
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
@@ -47,12 +46,15 @@
   [super viewDidAppear: animated];
   
   self.playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
+  
   self.playlistVC.playlistArray = [[NSMutableArray alloc]init];
+  
   self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * 1.0, 0, self.view.frame.size.width,self.view.frame.size.height);
   
   
   if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]){
     self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
+    
     NetworkController *sharedNetworkController = [NetworkController sharedInstance];
     sharedNetworkController.token = self.token;
     
@@ -74,16 +76,21 @@
   }
 }
 
+//<<<<<<< HEAD
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//  return self.beatsArray.count;
+//=======
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-  self.searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-  
-  [[NetworkController sharedInstance] federatedSearchTerm:self.searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
-    self.beats = beats;
-    self.beatSectionTitles = [beats allKeys];
+
+    self.searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
+    [[NetworkController sharedInstance] federatedSearchTerm:self.searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
+        self.beats = beats;
+        self.beatSectionTitles = [beats allKeys];
+      
     [self.tableView reloadData];
   }];
-  
+
 }
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
@@ -92,50 +99,55 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-  UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-  /* Create custom view to display section header... */
-  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 55, 18)];
-  UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-  [button setTag:section];
   
-  if (button.tag == 0) {
-    [button addTarget:self action:@selector(moreArtistButtonAction) forControlEvents:UIControlEventTouchUpInside];
-  }else if (button.tag == 1) {
-    [button addTarget:self action:@selector(moreAlbumsButtonAction) forControlEvents:UIControlEventTouchUpInside];
-  }else{
-    [button addTarget:self action:@selector(moreTracksButtonAction) forControlEvents:UIControlEventTouchUpInside];
-  }
-  
-  [button setTitle:@"more>" forState:UIControlStateNormal];
-  [button sizeToFit];
-  button.center = CGPointMake(tableView.frame.size.width - 50, 9);
-  
-  [label setFont:[UIFont boldSystemFontOfSize:16]];
-  NSString *string = [self.beatSectionTitles objectAtIndex:section];
-  /* Section header is in 0th index... */
-  [label setText:string];
-  [view addSubview:label];
-  [view addSubview:button];
-  
-  //[view addSubview:button];
-  [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
-  return view;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    /* Create custom view to display section header... */
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 55, 18)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setTag:section];
+    
+    if (button.tag == 0) {
+        [button addTarget:self action:@selector(moreArtistButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }else if (button.tag == 1) {
+        [button addTarget:self action:@selector(moreAlbumsButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }else{
+        [button addTarget:self action:@selector(moreTracksButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+
+    [button setTitle:@"more>" forState:UIControlStateNormal];
+    [button sizeToFit];
+    button.center = CGPointMake(tableView.frame.size.width - 50, 9);
+    
+    
+    
+    
+    
+    [label setFont:[UIFont boldSystemFontOfSize:16]];
+    NSString *string = [self.beatSectionTitles objectAtIndex:section];
+    /* Section header is in 0th index... */
+    [label setText:string];
+    [view addSubview:label];
+    [view addSubview:button];
+    
+    //[view addSubview:button];
+    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+    return view;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:section];
-  NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
-  return [sectionNames count];
-  // return self.beatsArray.count;
+     NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:section];
+      NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
+    return [sectionNames count];
+ // return self.beatsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
-  
-  NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:indexPath.section];
-  NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
-  NSDictionary *beat = [sectionNames objectAtIndex:indexPath.row];
+
+    NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:indexPath.section];
+    NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
+    NSDictionary *beat = [sectionNames objectAtIndex:indexPath.row];
   cell.textLabel.text = beat[@"display"];
   
   return cell;
@@ -181,14 +193,33 @@
   }];
 }
 
+//-(void)moreArtistButtonAction{
+//    NSLog(@"More Artist");
+//    [[NetworkController sharedInstance] moreSearchTerm:self.searchTerm type:@"artist" completionHandler:^(NSError *error, NSDictionary *beats) {
+//        self.beats = beats;
+//        self.beatSectionTitles = [beats allKeys];
+//        
+//        [self.tableView reloadData];
+//    }];
+//}
+
 -(void)moreAlbumsButtonAction{
-  NSLog(@"More Albums");
+    NSLog(@"More Albums");
 }
 
 -(void)moreTracksButtonAction{
-  NSLog(@"More Tracks");
-  
+    NSLog(@"More Tracks");
+
 }
 
+//-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+//  NSString *searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+//  
+//  [[NetworkController sharedInstance] searchTerm:searchTerm completionHandler:^(NSError *error, NSMutableArray *beats) {
+//    self.beatsArray = beats;
+//    [self.tableView reloadData];
+//  }];
+//  
+//}
 
 @end

@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MixedUp/NetworkController.m"
-            timestampString = "445320737.180731"
+            filePath = "MixedUp/Beat.m"
+            timestampString = "444449928.496482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
-            landmarkName = "-getMyPlaylists:completionHandler:"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "+parseJSONIntoBeats:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

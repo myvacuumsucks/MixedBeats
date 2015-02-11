@@ -8,15 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		453699991A40ED8900643029 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453699981A40ED8900643029 /* PlaylistViewController.m */; };
-		4540C5071A7DCC65007718B4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4540C5061A7DCC65007718B4 /* ViewController.m */; };
+
+		45B6405A1A7DC3710031FCB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B640591A7DC3710031FCB5 /* ViewController.m */; };
+		45B6405D1A7DC5440031FCB5 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B6405C1A7DC5440031FCB5 /* NetworkController.m */; };
+		45B640601A7DC57E0031FCB5 /* Beat.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B6405F1A7DC57E0031FCB5 /* Beat.m */; };
 		8B8443B51A32A94F00E04392 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443B41A32A94F00E04392 /* main.m */; };
 		8B8443B81A32A94F00E04392 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443B71A32A94F00E04392 /* AppDelegate.m */; };
 		8B8443BE1A32A94F00E04392 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B8443BC1A32A94F00E04392 /* Main.storyboard */; };
 		8B8443C01A32A94F00E04392 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B8443BF1A32A94F00E04392 /* Images.xcassets */; };
 		8B8443C31A32A94F00E04392 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8443C11A32A94F00E04392 /* LaunchScreen.xib */; };
 		8B8443CF1A32A94F00E04392 /* MixedUpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443CE1A32A94F00E04392 /* MixedUpTests.m */; };
-		8B8443DC1A32BAB500E04392 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443DB1A32BAB500E04392 /* NetworkController.m */; };
-		8BD4F12C1A3912AD0060A610 /* Beat.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD4F12B1A3912AD0060A610 /* Beat.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +33,13 @@
 /* Begin PBXFileReference section */
 		453699971A40ED8900643029 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
 		453699981A40ED8900643029 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
-		4540C5061A7DCC65007718B4 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+
+		45B640591A7DC3710031FCB5 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		45B6405B1A7DC5440031FCB5 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
+		45B6405C1A7DC5440031FCB5 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
+		45B6405E1A7DC57E0031FCB5 /* Beat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beat.h; sourceTree = "<group>"; };
+		45B6405F1A7DC57E0031FCB5 /* Beat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beat.m; sourceTree = "<group>"; };
+
 		8B8443AF1A32A94F00E04392 /* MixedUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixedUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8443B31A32A94F00E04392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B8443B41A32A94F00E04392 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -45,10 +52,6 @@
 		8B8443C81A32A94F00E04392 /* MixedUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixedUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8443CD1A32A94F00E04392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B8443CE1A32A94F00E04392 /* MixedUpTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixedUpTests.m; sourceTree = "<group>"; };
-		8B8443DA1A32BAB500E04392 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
-		8B8443DB1A32BAB500E04392 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
-		8BD4F12A1A3912AD0060A610 /* Beat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beat.h; sourceTree = "<group>"; };
-		8BD4F12B1A3912AD0060A610 /* Beat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beat.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +75,8 @@
 		8B0BC3921A40D3D90050405E /* MODEL */ = {
 			isa = PBXGroup;
 			children = (
-				8BD4F12A1A3912AD0060A610 /* Beat.h */,
-				8BD4F12B1A3912AD0060A610 /* Beat.m */,
+				45B6405E1A7DC57E0031FCB5 /* Beat.h */,
+				45B6405F1A7DC57E0031FCB5 /* Beat.m */,
 			);
 			name = MODEL;
 			sourceTree = "<group>";
@@ -82,11 +85,11 @@
 			isa = PBXGroup;
 			children = (
 				8B8443B91A32A94F00E04392 /* ViewController.h */,
-				4540C5061A7DCC65007718B4 /* ViewController.m */,
+				45B640591A7DC3710031FCB5 /* ViewController.m */,
 				453699971A40ED8900643029 /* PlaylistViewController.h */,
 				453699981A40ED8900643029 /* PlaylistViewController.m */,
-				8B8443DA1A32BAB500E04392 /* NetworkController.h */,
-				8B8443DB1A32BAB500E04392 /* NetworkController.m */,
+				45B6405B1A7DC5440031FCB5 /* NetworkController.h */,
+				45B6405C1A7DC5440031FCB5 /* NetworkController.m */,
 			);
 			name = CONTROLLER;
 			sourceTree = "<group>";
@@ -258,11 +261,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4540C5071A7DCC65007718B4 /* ViewController.m in Sources */,
-				8BD4F12C1A3912AD0060A610 /* Beat.m in Sources */,
-				8B8443DC1A32BAB500E04392 /* NetworkController.m in Sources */,
+				45B6405A1A7DC3710031FCB5 /* ViewController.m in Sources */,
 				453699991A40ED8900643029 /* PlaylistViewController.m in Sources */,
 				8B8443B81A32A94F00E04392 /* AppDelegate.m in Sources */,
+				45B640601A7DC57E0031FCB5 /* Beat.m in Sources */,
+				45B6405D1A7DC5440031FCB5 /* NetworkController.m in Sources */,
 				8B8443B51A32A94F00E04392 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

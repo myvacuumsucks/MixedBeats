@@ -51,11 +51,12 @@
           }
       }
       
-//    NSDictionary *dataDictionary = JSONDictionary[@"data"];
      
-      
-  }
     return beats;
   }
+
+  return nil;
+}
+
 
 @end
