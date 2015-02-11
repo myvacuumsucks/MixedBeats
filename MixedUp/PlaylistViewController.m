@@ -50,7 +50,7 @@
   }];
   
 
-  [[NetworkController sharedInstance] getMyPlaylists:([[NetworkController sharedInstance]user_ID]) completionHandler:^(NSError *error, NSMutableArray *playlists) {
+  [[NetworkController sharedInstance] getMyPlaylists:([[NetworkController sharedInstance]user_ID]) completionHandler:^(NSError *error, NSDictionary *playlists) {
       self.playlistArray = playlists;
       [self.tableView reloadData];
   }];

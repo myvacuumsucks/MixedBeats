@@ -25,8 +25,6 @@
 
 -(void)viewDidLoad {
   [super viewDidLoad];
-//    self.beatSectionTitles = @[@"artists",@"albums",@"tracks"];
-  
     
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
