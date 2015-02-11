@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Xcode
 #
 build/
@@ -26,3 +27,10 @@ DerivedData
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
 # Pods/
+=======
+<<<<<<< HEAD
+*.DS_Store
+=======
+*.DS_Store
+>>>>>>> f738bcb0b8ceb6cfd4b3c69e724aa9f7eaac5315
+>>>>>>> Federated_Search

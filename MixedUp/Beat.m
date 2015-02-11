@@ -20,60 +20,39 @@
   return self;
 }
 
-+ (NSMutableArray *)parseJSONIntoBeats:(NSData *)rawJSONData {
-    NSMutableArray *beats = [[NSMutableArray alloc] init];
++ (NSDictionary *)parseJSONIntoBeats:(NSData *)rawJSONData {
+    NSDictionary *beats = [[NSDictionary alloc] init];
     
     NSError *error = nil;
     NSDictionary *JSONDictionary = [NSJSONSerialization JSONObjectWithData:rawJSONData options:0 error:&error];
     
-//    if (error) {
-//      NSLog(@"json parsing unsuccessful. %@", error.localizedDescription);
-//
-//    } else {
-//      NSDictionary* infoDict = JSONDictionary[@"info"];
-//      
-//      if ([infoDict[@"count"] isEqual: @"0"]) {
-//        
-//        Beat *newBeat = [[Beat alloc] initWithName:@"Nothing Found"];
-//        [beats addObject:newBeat];
-//        
-//
-//      } else {
-//        NSArray *arrayOfEntry = JSONDictionary[@"data"];
-//        NSDictionary *data = arrayOfEntry[0];
-//        if ([data[@"type"] isEqual: @"playlist"]) {
-//          for (NSDictionary *searchDictionary in arrayOfEntry) {
-//            NSString *name = searchDictionary[@"name"];
-//            Beat *newBeat = [[Beat alloc] initWithName:name];
-//            [beats addObject:newBeat];
-//          }
-//      }
-//    }
-//    return beats;
-//    }
-//  return nil;
-//  }
-  
   
   if (error != nil) {
     NSLog(@"json parsing unsuccessful. %@", error.localizedDescription);
   } else {
-    NSLog(@"%@", JSONDictionary);
-    NSArray *arrayOfEntry = JSONDictionary[@"data"];
-    NSDictionary *data = arrayOfEntry[0];
-    if ([data[@"type"] isEqual: @"playlist"]) {
-      for (NSDictionary *searchDictionary in arrayOfEntry) {
-        NSString *name = searchDictionary[@"name"];
-        Beat *newBeat = [[Beat alloc] initWithName:name];
-        [beats addObject:newBeat];
+      
+      id JSONData = [JSONDictionary valueForKeyPath:@"data"];
+      if ([JSONData isKindOfClass:[NSDictionary class]]) {
+          
+          NSArray *artistsArray = JSONData[@"artists"];
+          NSArray *albumsArray = JSONData[@"albums"];
+          NSArray *tracksArray = JSONData[@"tracks"];
+          beats = @{@"artists" : artistsArray,
+                    @"albums" : albumsArray,
+                    @"tracks" : tracksArray
+                    };
+
+      } else {
+          if ([JSONData isKindOfClass:[NSArray class]]) {
+              NSArray *artistsArray = JSONData;
+              
+              NSLog(@"data dictionary: %@", JSONData);
+              beats = @{@"artists" : artistsArray,
+                        };
+          }
       }
-    } else {
-      for (NSDictionary *searchDictionary in arrayOfEntry) {
-        NSString *name = searchDictionary[@"display"];
-        Beat *newBeat = [[Beat alloc] initWithName:name];
-        [beats addObject:newBeat];
-      }
-    }
+      
+     
     return beats;
   }
   return nil;
