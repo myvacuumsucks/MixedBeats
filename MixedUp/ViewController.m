@@ -10,7 +10,6 @@
 
 @interface ViewController ()
 
-
 @property (strong, nonatomic) NSString *token;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -26,7 +25,7 @@
 
 -(void)viewDidLoad {
   [super viewDidLoad];
-   // beatSectionTitles = @[@"Artistis",@"Albums",@"Tracks"];
+//    self.beatSectionTitles = @[@"artists",@"albums",@"tracks"];
   
     
   self.tableView.delegate = self;
@@ -135,7 +134,7 @@
  // return self.beatsArray.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
 //  Beat *beat = self.beatsArray[indexPath.row];
@@ -159,7 +158,6 @@
   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-
 -(void)leftSwipeHandler:(UISwipeGestureRecognizer *)recognizer {
   
   [UIView animateWithDuration:0.3 animations:^{
@@ -169,7 +167,6 @@
     self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * 0, 0, self.view.frame.size.width, self.view.frame.size.height);
   } completion:^(BOOL finished) {
     [self.playlistVC.tableView reloadData];
-    
     
   }];
 }

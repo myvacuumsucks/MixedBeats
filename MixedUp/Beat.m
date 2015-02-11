@@ -30,7 +30,6 @@
   if (error != nil) {
     NSLog(@"json parsing unsuccessful. %@", error.localizedDescription);
   } else {
-    NSLog(@"%@", JSONDictionary);
       
       id JSONData = [JSONDictionary valueForKeyPath:@"data"];
       if ([JSONData isKindOfClass:[NSDictionary class]]) {
