@@ -20,8 +20,6 @@
 
 - (void) viewWillAppear:(BOOL)animated {
   [super viewWillAppear: NO];
-    //self.playlistToolbar.barTintColor = [UIColor blueColor];
-  self.playlistToolbar.barStyle = UIBarStyleBlack;
 
 }
 - (void)viewDidLoad {
@@ -36,24 +34,24 @@
   return self.playlistArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
-  Beat *beat = self.playlistArray[indexPath.row];
-  cell.textLabel.text = beat.name;
-  return cell;
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
+	NSDictionary *list = self.playlistArray[indexPath.row];
+	cell.textLabel.text = list[@"name"];
+	
+	return cell;
 }
 
 
 - (IBAction)myPlaylistsButton:(id)sender {
-  [[NetworkController sharedInstance]getMyUserID:^(NSError *error, NSString *userID) {
-    NSLog(@"%@", userID);
-  }];
-  
-
-  [[NetworkController sharedInstance] getMyPlaylists:([[NetworkController sharedInstance]user_ID]) completionHandler:^(NSError *error, NSDictionary *playlists) {
+	
+  [[NetworkController sharedInstance] getMyPlaylists:([[NetworkController sharedInstance]user_ID]) completionHandler:^(NSError *error, NSMutableArray *playlists) {
       self.playlistArray = playlists;
       [self.tableView reloadData];
   }];
+	
+	
 }
 
 

@@ -17,6 +17,8 @@
 		8B8443C01A32A94F00E04392 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B8443BF1A32A94F00E04392 /* Images.xcassets */; };
 		8B8443C31A32A94F00E04392 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8443C11A32A94F00E04392 /* LaunchScreen.xib */; };
 		8B8443CF1A32A94F00E04392 /* MixedUpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443CE1A32A94F00E04392 /* MixedUpTests.m */; };
+		8BB8ED051A8ED1A500543DA6 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB8ED041A8ED1A500543DA6 /* Playlist.m */; };
+		8BB8ED081A8EEED600543DA6 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB8ED071A8EEED600543DA6 /* Artist.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,10 @@
 		8B8443C81A32A94F00E04392 /* MixedUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixedUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8443CD1A32A94F00E04392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B8443CE1A32A94F00E04392 /* MixedUpTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixedUpTests.m; sourceTree = "<group>"; };
+		8BB8ED031A8ED1A500543DA6 /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
+		8BB8ED041A8ED1A500543DA6 /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
+		8BB8ED061A8EEED600543DA6 /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
+		8BB8ED071A8EEED600543DA6 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,10 @@
 		8B0BC3921A40D3D90050405E /* MODEL */ = {
 			isa = PBXGroup;
 			children = (
+				8BB8ED031A8ED1A500543DA6 /* Playlist.h */,
+				8BB8ED041A8ED1A500543DA6 /* Playlist.m */,
+				8BB8ED061A8EEED600543DA6 /* Artist.h */,
+				8BB8ED071A8EEED600543DA6 /* Artist.m */,
 				45B6405E1A7DC57E0031FCB5 /* Beat.h */,
 				45B6405F1A7DC57E0031FCB5 /* Beat.m */,
 			);
@@ -260,6 +270,8 @@
 			files = (
 				45B6405A1A7DC3710031FCB5 /* ViewController.m in Sources */,
 				453699991A40ED8900643029 /* PlaylistViewController.m in Sources */,
+				8BB8ED081A8EEED600543DA6 /* Artist.m in Sources */,
+				8BB8ED051A8ED1A500543DA6 /* Playlist.m in Sources */,
 				8B8443B81A32A94F00E04392 /* AppDelegate.m in Sources */,
 				45B640601A7DC57E0031FCB5 /* Beat.m in Sources */,
 				45B6405D1A7DC5440031FCB5 /* NetworkController.m in Sources */,
