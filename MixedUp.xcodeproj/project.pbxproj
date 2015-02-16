@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		453699991A40ED8900643029 /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 453699981A40ED8900643029 /* PlaylistViewController.m */; };
-
 		45B6405A1A7DC3710031FCB5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B640591A7DC3710031FCB5 /* ViewController.m */; };
 		45B6405D1A7DC5440031FCB5 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B6405C1A7DC5440031FCB5 /* NetworkController.m */; };
 		45B640601A7DC57E0031FCB5 /* Beat.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B6405F1A7DC57E0031FCB5 /* Beat.m */; };
+		45E3EEE41A90A8A90095094A /* ScratchDeleteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3EEE31A90A8A90095094A /* ScratchDeleteFile.m */; };
 		8B8443B51A32A94F00E04392 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443B41A32A94F00E04392 /* main.m */; };
 		8B8443B81A32A94F00E04392 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443B71A32A94F00E04392 /* AppDelegate.m */; };
 		8B8443BE1A32A94F00E04392 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B8443BC1A32A94F00E04392 /* Main.storyboard */; };
@@ -33,13 +33,12 @@
 /* Begin PBXFileReference section */
 		453699971A40ED8900643029 /* PlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
 		453699981A40ED8900643029 /* PlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
-
 		45B640591A7DC3710031FCB5 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		45B6405B1A7DC5440031FCB5 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
 		45B6405C1A7DC5440031FCB5 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
 		45B6405E1A7DC57E0031FCB5 /* Beat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beat.h; sourceTree = "<group>"; };
 		45B6405F1A7DC57E0031FCB5 /* Beat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beat.m; sourceTree = "<group>"; };
-
+		45E3EEE31A90A8A90095094A /* ScratchDeleteFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScratchDeleteFile.m; path = ../ScratchDeleteFile.m; sourceTree = "<group>"; };
 		8B8443AF1A32A94F00E04392 /* MixedUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixedUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8443B31A32A94F00E04392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B8443B41A32A94F00E04392 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 				453699981A40ED8900643029 /* PlaylistViewController.m */,
 				45B6405B1A7DC5440031FCB5 /* NetworkController.h */,
 				45B6405C1A7DC5440031FCB5 /* NetworkController.m */,
+				45E3EEE31A90A8A90095094A /* ScratchDeleteFile.m */,
 			);
 			name = CONTROLLER;
 			sourceTree = "<group>";
@@ -261,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45E3EEE41A90A8A90095094A /* ScratchDeleteFile.m in Sources */,
 				45B6405A1A7DC3710031FCB5 /* ViewController.m in Sources */,
 				453699991A40ED8900643029 /* PlaylistViewController.m in Sources */,
 				8B8443B81A32A94F00E04392 /* AppDelegate.m in Sources */,

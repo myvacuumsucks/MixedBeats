@@ -17,7 +17,6 @@
 
 @implementation PlaylistViewController
 
-
 - (void) viewWillAppear:(BOOL)animated {
   [super viewWillAppear: NO];
     //self.playlistToolbar.barTintColor = [UIColor blueColor];

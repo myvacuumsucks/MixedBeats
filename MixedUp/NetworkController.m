@@ -21,7 +21,6 @@ NSString* response_type = @"token";
 NSString* redirectURL = @"somefancyname://test";
 
 
-
 + (NetworkController*)sharedInstance
 {
     static NetworkController *_sharedInstance = nil;
@@ -53,17 +52,9 @@ NSString* redirectURL = @"somefancyname://test";
   [defaults synchronize];
 
   NSLog(@"%@", self.token);
-  
-    //test test
 
 }
 
-//<<<<<<< HEAD
-//- (void)searchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSMutableArray *beats))completionHandler {
-//  NSString *urlWithSearchTerm = [[NSString alloc] init];
-//  urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search?type=artist&q=%@+&client_id=t3uz7rxmzq2a57hnqdxjzwbh", name];
-//  
-//=======
 - (void)federatedSearchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler {
   NSString *urlWithSearchTerm = [[NSString alloc] init];
   urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search/federated?q=%@&limit=20&offset=0&client_id=3nbxp96juh7spx6j9srkknhs", name];
@@ -82,14 +73,12 @@ NSString* redirectURL = @"somefancyname://test";
         NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
         if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
           NSLog(@"success! code: %lu", httpURLResponse.statusCode);
+          
+          
           //NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//<<<<<<< HEAD
-//            //NSLog(@"The JSON: %@", json);
-//          NSMutableArray *beats = [Beat parseJSONIntoBeats:data];
-//=======
-          //NSLog(@"The JSON: %@", json);
+          
+          
           NSDictionary *beats = [Beat parseJSONIntoBeats:data];
-//>>>>>>> Federated_Search
           [[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
           }];
 

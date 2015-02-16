@@ -44,9 +44,13 @@
       } else {
           if ([JSONData isKindOfClass:[NSArray class]]) {
               NSArray *artistsArray = JSONData;
-              
+              NSArray *albumsArray = JSONData;
+              NSArray *tracksArray = JSONData;
+            
               NSLog(@"data dictionary: %@", JSONData);
               beats = @{@"artists" : artistsArray,
+                        @"albums" : albumsArray,
+                        @"tracks" : tracksArray,
                         };
           }
       }

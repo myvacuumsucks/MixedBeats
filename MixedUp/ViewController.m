@@ -76,10 +76,6 @@
   }
 }
 
-//<<<<<<< HEAD
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//  return self.beatsArray.count;
-//=======
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 
     self.searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
@@ -117,9 +113,6 @@
     [button setTitle:@"more>" forState:UIControlStateNormal];
     [button sizeToFit];
     button.center = CGPointMake(tableView.frame.size.width - 50, 9);
-    
-    
-    
     
     
     [label setFont:[UIFont boldSystemFontOfSize:16]];
@@ -193,33 +186,26 @@
   }];
 }
 
-//-(void)moreArtistButtonAction{
-//    NSLog(@"More Artist");
-//    [[NetworkController sharedInstance] moreSearchTerm:self.searchTerm type:@"artist" completionHandler:^(NSError *error, NSDictionary *beats) {
-//        self.beats = beats;
-//        self.beatSectionTitles = [beats allKeys];
-//        
-//        [self.tableView reloadData];
-//    }];
-//}
-
 -(void)moreAlbumsButtonAction{
-    NSLog(@"More Albums");
+  NSLog(@"More Albums");
+  [[NetworkController sharedInstance] moreSearchTerm:self.searchTerm type:@"album" completionHandler:^(NSError *error, NSDictionary *beats) {
+    self.beats = beats;
+    self.beatSectionTitles = [beats allKeys];
+    
+    [self.tableView reloadData];
+  }];
 }
 
 -(void)moreTracksButtonAction{
-    NSLog(@"More Tracks");
-
+  
+  NSLog(@"More Tracks");
+  [[NetworkController sharedInstance] moreSearchTerm:self.searchTerm type:@"track" completionHandler:^(NSError *error, NSDictionary *beats) {
+    self.beats = beats;
+    self.beatSectionTitles = [beats allKeys];
+    
+    [self.tableView reloadData];
+  }];
+  
 }
-
-//-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-//  NSString *searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-//  
-//  [[NetworkController sharedInstance] searchTerm:searchTerm completionHandler:^(NSError *error, NSMutableArray *beats) {
-//    self.beatsArray = beats;
-//    [self.tableView reloadData];
-//  }];
-//  
-//}
 
 @end
