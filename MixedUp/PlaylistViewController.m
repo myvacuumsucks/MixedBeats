@@ -18,10 +18,6 @@
 @implementation PlaylistViewController
 
 
-- (void) viewWillAppear:(BOOL)animated {
-  [super viewWillAppear: NO];
-
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     

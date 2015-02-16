@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-
+#import <Foundation/Foundation.h> 
+#import <AVFoundation/AVFoundation.h>
 @interface ViewController ()
 
 @property (strong, nonatomic) NSString *token;
@@ -15,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) UIAlertController *alert;
 @property (strong, nonatomic) PlaylistViewController *playlistVC;
+@property (strong, nonatomic) ViewController *searchVC;
+
 @property (strong, nonatomic)  NSArray* beatSectionTitles;
 @property (strong, nonatomic) NSDictionary* beats;
 @property (strong, nonatomic)  NSString *searchTerm;
@@ -46,17 +49,20 @@
 
   [self.view addGestureRecognizer:leftGestureRecognizer];
   [self.view addGestureRecognizer:rightGestureRecognizer];
+	
+
 
 }
 
 -(void)viewDidAppear:(BOOL)animated{
   [super viewDidAppear: animated];
-  
-  self.playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
-  self.playlistVC.playlistArray = [[NSMutableArray alloc]init];
-  self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * 1.0, 0, self.view.frame.size.width,self.view.frame.size.height);
-  
-  
+	self.searchVC = [self.storyboard instantiateInitialViewController];
+	self.playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
+	self.playlistVC.playlistArray = [[NSMutableArray alloc]init];
+	self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width,self.view.frame.size.height);
+	self.searchVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height);
+
+	
   if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]){
     self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
     NetworkController *sharedNetworkController = [NetworkController sharedInstance];
@@ -87,8 +93,9 @@
         self.beats = beats;
         self.beatSectionTitles = [beats allKeys];
         [self.tableView reloadData];
-    }];
-    
+		
+	}];
+	
 }
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
@@ -147,14 +154,17 @@
   return cell;
 }
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//  
-//    NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:indexPath.section];
-//    NSArray *sectionObjects = [self.beats objectForKey:sectionTitle];
-//    NSDictionary *beat = [sectionObjects objectAtIndex:indexPath.row];
-//    [self.playlistVC.playlistArray addObject:beat];
-//	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-//}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+    NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:indexPath.section];
+    NSArray *sectionObjects = [self.beats objectForKey:sectionTitle];
+    NSDictionary *beat = [sectionObjects objectAtIndex:indexPath.row];
+	
+	NSLog(@"%@", [beat valueForKey:@"result_type"]);
+	
+	[self.playlistVC.playlistArray addObject:beat];
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 -(void)leftSwipeHandler:(UISwipeGestureRecognizer *)recognizer {
   
@@ -176,7 +186,7 @@
 -(void)rightSwipeHandler:(UISwipeGestureRecognizer *)recognizer {
 
   [UIView animateWithDuration:0.3 animations:^{
-    self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * .98, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width * 1.0, 0, self.view.frame.size.width, self.view.frame.size.height);
   } completion:^(BOOL finished) {
 	  
   }];

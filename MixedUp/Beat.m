@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 Kori Kolodziejczak. All rights reserved.
 //
 
-#import "Beat.h"
+#import "Beat.h" 
+
 
 @implementation Beat
 

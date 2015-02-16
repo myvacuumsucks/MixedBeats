@@ -13,6 +13,6 @@
 @property (strong, nonatomic) NSString* playlistName;
 @property (strong, nonatomic) NSMutableArray* songArray;
 
-+(NSArray *)parseJsonToPlaylist:(NSData *)data;
++(NSMutableArray *)parseJsonToPlaylist:(NSData *)data;
 
 @end
