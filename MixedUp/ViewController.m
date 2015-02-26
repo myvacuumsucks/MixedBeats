@@ -141,15 +141,25 @@
     NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:indexPath.section];
     NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
     NSDictionary *beat = [sectionNames objectAtIndex:indexPath.row];
-  cell.textLabel.text = beat[@"display"];
-  
+	
+	//below used to be: beat[@"display"]
+	cell.textLabel.text = beat[@"display"];
   return cell;
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-  Beat *beat = self.beatsArray[indexPath.row];
+	
+	NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:indexPath.section];
+	NSArray *sectionNames = [self.beats objectForKey:sectionTitle];
+	NSDictionary *beat = [sectionNames objectAtIndex:indexPath.row];
+	
+	[[NetworkController sharedInstance] getArtistCollectionOfAlbums:beat[@"id"] completionHandler:^(NSError *error, NSDictionary *artistAlbumIDs) {
+		self.beats = artistAlbumIDs;
+		self.beatSectionTitles = [artistAlbumIDs allKeys];
+		[self.tableView reloadData];
+	}];
+	
   [self.playlistVC.playlistArray addObject:beat];
   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

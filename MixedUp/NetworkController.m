@@ -9,7 +9,7 @@
 #import "NetworkController.h"
 
 @interface NetworkController ()
-@property (strong, nonatomic) NSString* client_secret;
+
 @end
 
 @implementation NetworkController
@@ -193,6 +193,41 @@ NSString* redirectURL = @"somefancyname://test";
     }];
     
     [dataTask resume];
+}
+
+- (void)getArtistCollectionOfAlbums:(NSString *)artistID completionHandler: (void(^)(NSError *error, NSDictionary *artistAlbumIDs))completionHandler {
+	
+	NSString *urlWithSearchTerm = [[NSString alloc] init];
+	urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/artists/%@/albums?limit=20&offset=0&client_id=%@", artistID, clientID];
+	
+	
+	NSURL *url = [[NSURL alloc] initWithString:urlWithSearchTerm];
+	NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+	NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url];
+	NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+		
+		if (error) {
+			NSLog(@"%@", error.localizedDescription);
+		} else {
+			
+			if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+				NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
+				if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
+					NSLog(@"success! code: %lu", httpURLResponse.statusCode);
+					//NSLog(@"The JSON: %@", json);
+					NSDictionary *beats = [Beat parseJSONIntoArtistAlbums:data];
+					[[NSOperationQueue mainQueue] addOperationWithBlock:^{completionHandler(nil, beats);
+					}];
+					
+				}
+			}
+		}
+		
+	}];
+	
+	[dataTask resume];
+	
 }
 
 @end

@@ -24,6 +24,6 @@
 -(void)moreSearchTerm:(NSString *)name type:(NSString *)type completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler;
 -(void)getMyPlaylists:(NSString *)name completionHandler: (void(^)(NSError *error, NSDictionary *playlists))completionHandler;
 -(void)getMyUserID: (void(^)(NSError *error, NSString *userID))completionHandler;
--(void) playSelectedBeat:(NSString *)trackID;
+-(void)getArtistCollectionOfAlbums:(NSString *)artistID completionHandler: (void(^)(NSError *error, NSDictionary *artistAlbumIDs))completionHandler;
 
 @end

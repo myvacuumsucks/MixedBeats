@@ -11,7 +11,11 @@
 @interface Beat : NSObject
 
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *artistID;
+@property (strong, nonatomic) NSString *albumID;
 
 + (NSDictionary *)parseJSONIntoBeats:(NSData *)rawJSONData;
++ (NSDictionary *)parseJSONIntoArtistAlbums:(NSData *)rawJSONData;
+- (instancetype) initWithName:(NSString *)name;
 
 @end
