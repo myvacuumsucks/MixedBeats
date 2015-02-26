@@ -56,12 +56,14 @@
 
 -(void)viewDidAppear:(BOOL)animated{
   [super viewDidAppear: animated];
+	
+	self.view.backgroundColor = [UIColor blueColor];
 	self.searchVC = [self.storyboard instantiateInitialViewController];
 	self.playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
 	self.playlistVC.playlistArray = [[NSMutableArray alloc]init];
 	self.playlistVC.view.frame = CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width,self.view.frame.size.height);
 	self.searchVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height);
-
+	self.searchBar.barStyle = UISearchBarStyleProminent;
 	
   if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]){
     self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
@@ -100,6 +102,10 @@
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     return [self.beatSectionTitles count];
+}
+
+-(void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
+	
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -162,9 +168,12 @@
 	
 	NSLog(@"%@", [beat valueForKey:@"result_type"]);
 	
-	[self.playlistVC.playlistArray addObject:beat];
-	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+		
+//	[self.playlistVC.playlistArray addObject:beat];
+//	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+
 
 -(void)leftSwipeHandler:(UISwipeGestureRecognizer *)recognizer {
   
