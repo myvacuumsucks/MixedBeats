@@ -91,6 +91,7 @@ NSString* redirectURL = @"somefancyname://test";
     [dataTask resume];
 }
 
+
 - (void)moreSearchTerm:(NSString *)name type:(NSString *)type completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler {
     NSString *urlWithSearchTerm = [[NSString alloc] init];
     urlWithSearchTerm = [NSString stringWithFormat:@"https://partner.api.beatsmusic.com/v1/api/search?q=%@&type=%@&limit=20&offset=0&client_id=3nbxp96juh7spx6j9srkknhs", name, type];
