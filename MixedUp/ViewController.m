@@ -181,6 +181,7 @@
   [[NetworkController sharedInstance] moreSearchTerm:self.searchTerm type:@"artist" completionHandler:^(NSError *error, NSDictionary *beats) {
     self.beats = beats;
     self.beatSectionTitles = [beats allKeys];
+			NSLog(@"beat sec artist titles: %@", self.beatSectionTitles);
     
     [self.tableView reloadData];
   }];
@@ -191,18 +192,19 @@
   [[NetworkController sharedInstance] moreSearchTerm:self.searchTerm type:@"album" completionHandler:^(NSError *error, NSDictionary *beats) {
     self.beats = beats;
     self.beatSectionTitles = [beats allKeys];
-    
+				NSLog(@"beat sec album titles: %@", self.beatSectionTitles);
+		
     [self.tableView reloadData];
   }];
 }
 
 -(void)moreTracksButtonAction{
-  
   NSLog(@"More Tracks");
   [[NetworkController sharedInstance] moreSearchTerm:self.searchTerm type:@"track" completionHandler:^(NSError *error, NSDictionary *beats) {
     self.beats = beats;
-    self.beatSectionTitles = [beats allKeys];
-    
+		self.beatSectionTitles = [beats allKeys];
+		NSLog(@"beat sec track titles: %@", self.beatSectionTitles);
+		
     [self.tableView reloadData];
   }];
   

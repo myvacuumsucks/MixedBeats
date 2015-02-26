@@ -42,24 +42,48 @@
                     };
 
       } else {
+				
           if ([JSONData isKindOfClass:[NSArray class]]) {
-              NSArray *artistsArray = JSONData;
-              NSArray *albumsArray = JSONData;
-              NSArray *tracksArray = JSONData;
-            
-              NSLog(@"data dictionary: %@", JSONData);
-              beats = @{@"artists" : artistsArray,
-                        @"albums" : albumsArray,
-                        @"tracks" : tracksArray,
-                        };
+//
+//              NSLog(@"data dictionary: %@", JSONData);
+//              beats = @{@"artists" : artistsArray,
+//                        @"albums" : albumsArray,
+//                        @"tracks" : tracksArray,
+//                        };
+						
+//						for (id currentValue in [beats allKeys])
+						
+							if ([JSONData[0][@"result_type"] isEqualToString:@"artist"]){
+								
+								NSArray *artistsArray = [JSONDictionary valueForKeyPath:@"data"];
+								
+								beats = @{
+													@"artists" : artistsArray
+													};
+								NSLog(@"ARTIST");
+								
+							} else if ([JSONData[0][@"result_type"] isEqualToString:@"album"]){
+								NSArray *albumsArray = [JSONDictionary valueForKeyPath:@"data"];
+								beats = @{
+													@"albums" : albumsArray
+													};
+								NSLog(@"ALBUM");
+							} else if ([JSONData[0][@"result_type"] isEqualToString:@"track"]){
+								
+								NSArray *tracksArray = [JSONDictionary valueForKeyPath:@"data"];
+								beats = @{
+													@"tracks" : tracksArray
+													};
+																NSLog(@"TRACKS");
+							}
+						
           }
       }
       
      
-    return beats;
   }
 
-  return nil;
+	return beats;
 }
 
 

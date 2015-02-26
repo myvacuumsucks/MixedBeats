@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MixedUp/ViewController.m"
-            timestampString = "445736556.824049"
+            filePath = "MixedUp/Beat.m"
+            timestampString = "446605495.588632"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "+parseJSONIntoBeats:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,29 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MixedUp/ViewController.m"
-            timestampString = "445736556.824049"
+            filePath = "MixedUp/Beat.m"
+            timestampString = "446605496.409568"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "-moreArtistButtonAction"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MixedUp/NetworkController.m"
-            timestampString = "445689532.475423"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-moreSearchTerm:type:completionHandler:"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "+parseJSONIntoBeats:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MixedUp/NetworkController.m"
-            timestampString = "445689725.745546"
+            filePath = "MixedUp/Beat.m"
+            timestampString = "446605508.528078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "-moreSearchTerm:type:completionHandler:"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "+parseJSONIntoBeats:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +57,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MixedUp/PlaylistViewController.m"
-            timestampString = "445689952.098046"
+            filePath = "MixedUp/Beat.m"
+            timestampString = "446605509.688176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-myPlaylistsButton:"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "+parseJSONIntoBeats:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MixedUp/Beat.m"
+            timestampString = "446605534.484234"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "+parseJSONIntoBeats:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
