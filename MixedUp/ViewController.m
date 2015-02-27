@@ -57,7 +57,7 @@
 -(void)viewDidAppear:(BOOL)animated{
   [super viewDidAppear: animated];
 	
-	self.view.backgroundColor = [UIColor blueColor];
+	self.view.backgroundColor = [UIColor grayColor];
 	self.searchVC = [self.storyboard instantiateInitialViewController];
 	self.playlistVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PLAYLIST_VC"];
 	self.playlistVC.playlistArray = [[NSMutableArray alloc]init];

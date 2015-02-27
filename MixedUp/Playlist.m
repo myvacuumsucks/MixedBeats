@@ -11,19 +11,53 @@
 @implementation Playlist
 
 
+
+
 +(NSMutableArray *)parseJsonToPlaylist:(NSData *)data {
 	NSMutableArray *playListArray = [[NSMutableArray alloc]init];
 	
 	NSError *error = nil;
 	NSDictionary *JSONDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 	
+
 	if (error) {
 		NSLog(@"parse playlist failed");
 	}else{
-		playListArray = [JSONDictionary valueForKey:@"data"];
+		
+		for (NSDictionary *item in JSONDictionary[@"data"]) {
+			Playlist *list = [Playlist new];
+			list.name = item[@"name"];
+			list.ident = item[@"id"];
+			[playListArray addObject:list];
+		}
+		
 	}
 	
 	return playListArray;
+}
+
++ (NSArray *)parseJSONToTracklist:(NSData *)data {
+	NSMutableArray *playlistTracks = [[NSMutableArray alloc]init];
+	
+	NSError *error = nil;
+	NSDictionary *JSONDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+	
+	
+	if (error) {
+		NSLog(@"parse playlist failed");
+	}else{
+		
+		for (NSDictionary *item in JSONDictionary[@"data"]) {
+			Playlist *list = [Playlist new];
+			list.name = item[@"title"];
+			list.ident = item[@"id"];
+			[playlistTracks addObject:list];
+		}
+		
+	}
+	
+	return playlistTracks;
+	
 }
 
 @end

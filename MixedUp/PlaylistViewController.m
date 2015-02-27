@@ -33,12 +33,22 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL" forIndexPath:indexPath];
-	NSDictionary *list = self.playlistArray[indexPath.row];
-	cell.textLabel.text = list[@"name"];
+	Playlist *list = self.playlistArray[indexPath.row];
+	
+	cell.textLabel.text = list.name;
 	
 	return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	Playlist *playlistID = [self.playlistArray objectAtIndex:indexPath.row];
+	[[NetworkController sharedInstance]getMyPlaylistTracksWithID: playlistID.ident completionHandler:^(NSError *error, NSMutableArray *playlists) {
+		self.playlistArray = playlists;
+		[self.tableView reloadData];
+	}];
+	
+}
 
 - (IBAction)myPlaylistsButton:(id)sender {
 	

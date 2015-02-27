@@ -10,9 +10,10 @@
 
 @interface Playlist : NSObject
 
-@property (strong, nonatomic) NSString* playlistName;
-@property (strong, nonatomic) NSMutableArray* songArray;
+@property (strong, nonatomic) NSString* name;
+@property (strong, nonatomic) NSString* ident;
 
 +(NSMutableArray *)parseJsonToPlaylist:(NSData *)data;
++ (NSArray *)parseJSONToTracklist:(NSData *)data;
 
 @end
