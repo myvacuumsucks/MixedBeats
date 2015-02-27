@@ -17,6 +17,7 @@
 @property (strong, nonatomic) UIAlertController *alert;
 @property (strong, nonatomic) PlaylistViewController *playlistVC;
 @property (strong, nonatomic) ViewController *searchVC;
+@property (strong, nonatomic) UITextField *textField;
 
 @property (strong, nonatomic)  NSArray* beatSectionTitles;
 @property (strong, nonatomic) NSDictionary* beats;
@@ -39,7 +40,8 @@
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   self.searchBar.delegate = self;
-  
+	self.textField.delegate = self;
+	
   UISwipeGestureRecognizer *leftGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeHandler:)];
   UISwipeGestureRecognizer *rightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandler:)];
 
@@ -94,11 +96,19 @@
     [[NetworkController sharedInstance] federatedSearchTerm:self.searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
         self.beats = beats;
         self.beatSectionTitles = [beats allKeys];
+			
         [self.tableView reloadData];
 		
 	}];
 	
 }
+
+//- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+//	
+//	[textField resignFirstResponder];
+//	
+//	return NO;
+//}
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     return [self.beatSectionTitles count];

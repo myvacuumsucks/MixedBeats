@@ -168,7 +168,7 @@ NSString* redirectURL = @"somefancyname://test";
       if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *httpURLResponse = (NSHTTPURLResponse *)response;
         if (httpURLResponse.statusCode >= 200 && httpURLResponse.statusCode <= 299) {
-          NSLog(@"success! code: %lu", httpURLResponse.statusCode);
+          NSLog(@"success! code: %lu", (long)httpURLResponse.statusCode);
 			
 			
           NSMutableArray *playlists = [Playlist parseJsonToPlaylist:data];

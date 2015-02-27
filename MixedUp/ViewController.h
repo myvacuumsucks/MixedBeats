@@ -10,7 +10,7 @@
 #import "NetworkController.h"
 #import "PlaylistViewController.h"
 
-@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLSessionDelegate, UISearchBarDelegate, UIWebViewDelegate>
+@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLSessionDelegate, UISearchBarDelegate, UIWebViewDelegate, UITextFieldDelegate>
 
 
 

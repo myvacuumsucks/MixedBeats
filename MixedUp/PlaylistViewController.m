@@ -12,6 +12,7 @@
 @interface PlaylistViewController ()
 
 - (IBAction)myPlaylistsButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 
 @end
 
@@ -41,10 +42,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+	Playlist *list = self.playlistArray[indexPath.row];
+	self.headerLabel.text = list.name;
 	
 	Playlist *playlistID = [self.playlistArray objectAtIndex:indexPath.row];
 	[[NetworkController sharedInstance]getMyPlaylistTracksWithID: playlistID.ident completionHandler:^(NSError *error, NSMutableArray *playlists) {
 		self.playlistArray = playlists;
+
 		[self.tableView reloadData];
 	}];
 	
@@ -56,9 +61,6 @@
       self.playlistArray = playlists;
       [self.tableView reloadData];
   }];
-	
-	
 }
-
 
 @end
