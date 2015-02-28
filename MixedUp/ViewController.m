@@ -35,29 +35,27 @@
 @implementation ViewController
 
 -(void)viewDidLoad {
-  [super viewDidLoad];
+	[super viewDidLoad];
 
-  self.tableView.delegate = self;
-  self.tableView.dataSource = self;
-  self.searchBar.delegate = self;
+	self.tableView.delegate = self;
+	self.tableView.dataSource = self;
+	self.searchBar.delegate = self;
 	self.textField.delegate = self;
 	
-  UISwipeGestureRecognizer *leftGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeHandler:)];
-  UISwipeGestureRecognizer *rightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandler:)];
+	UISwipeGestureRecognizer *leftGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeHandler:)];
+	UISwipeGestureRecognizer *rightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandler:)];
 
-  [leftGestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
-  [rightGestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-  
+	[leftGestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+	[rightGestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
 
-  [self.view addGestureRecognizer:leftGestureRecognizer];
-  [self.view addGestureRecognizer:rightGestureRecognizer];
-	
 
+	[self.view addGestureRecognizer:leftGestureRecognizer];
+	[self.view addGestureRecognizer:rightGestureRecognizer];
 
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-  [super viewDidAppear: animated];
+	[super viewDidAppear: animated];
 	
 	self.view.backgroundColor = [UIColor grayColor];
 	self.searchVC = [self.storyboard instantiateInitialViewController];
@@ -67,27 +65,26 @@
 	self.searchVC.view.frame = CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height);
 	self.searchBar.barStyle = UISearchBarStyleProminent;
 	
-  if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]){
-    self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
-    NetworkController *sharedNetworkController = [NetworkController sharedInstance];
-    sharedNetworkController.token = self.token;
-    
-  }else{
-    
-    self.alert = [UIAlertController alertControllerWithTitle:nil message:@"MixedBeats will present a web browser to BeatsMusic user athenication" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-       [[NetworkController sharedInstance]requestOAuthAccess];
-        
-          }];
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-    }];
-    
-    [self.alert addAction:okAction];
-    [self.alert addAction:cancelAction];
-    [self presentViewController:self.alert animated:YES completion:nil];
-  }
+	if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"] isKindOfClass:[NSString class]]){
+		self.token = [[NSUserDefaults standardUserDefaults] valueForKey:@"authToken"];
+		NetworkController *sharedNetworkController = [NetworkController sharedInstance];
+		sharedNetworkController.token = self.token;
+
+	}else{
+
+		self.alert = [UIAlertController alertControllerWithTitle:nil message:@"MixedBeats will present a web browser to BeatsMusic user athenication" preferredStyle:UIAlertControllerStyleAlert];
+	
+		UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		[[NetworkController sharedInstance]requestOAuthAccess];
+		}];
+	
+		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+		}];
+		
+		[self.alert addAction:okAction];
+		[self.alert addAction:cancelAction];
+		[self presentViewController:self.alert animated:YES completion:nil];
+	  }
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -96,11 +93,8 @@
     [[NetworkController sharedInstance] federatedSearchTerm:self.searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
         self.beats = beats;
         self.beatSectionTitles = [beats allKeys];
-			
         [self.tableView reloadData];
-		
 	}];
-	
 }
 
 //- (BOOL) textFieldShouldReturn:(UITextField *)textField {
@@ -114,44 +108,46 @@
     return [self.beatSectionTitles count];
 }
 
--(void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
+//-(void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
+//	
+//}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 55, 18)];
+	UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+	NSString *string = [self.beatSectionTitles objectAtIndex:section];
+	
+	[button setTag:section];
+    
+	if (button.tag == 0) {[button addTarget:self action:@selector(moreArtistButtonAction) forControlEvents:UIControlEventTouchUpInside];
+	} else if (button.tag == 1) {
+		[button addTarget:self action:@selector(moreAlbumsButtonAction) forControlEvents:UIControlEventTouchUpInside];
+	} else {
+		[button addTarget:self action:@selector(moreTracksButtonAction) forControlEvents:UIControlEventTouchUpInside];
+	}
+
+	if (self.beatSectionTitles.count > 1) {
+		[button setTitle:@"more>" forState:UIControlStateNormal];
+		[button sizeToFit];
+		button.center = CGPointMake(tableView.frame.size.width * .9, tableView.sectionHeaderHeight	/ 2);
+		[view addSubview:button];
+	}
+	
+	[label setFont:[UIFont boldSystemFontOfSize:16]];
+	[label setText:string];
+	[view addSubview:label];
+	[view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
+	
+	return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+	
+	return 30.0;
 	
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 55, 18)];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    [button setTag:section];
-    
-    if (button.tag == 0) {
-        [button addTarget:self action:@selector(moreArtistButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    }else if (button.tag == 1) {
-        [button addTarget:self action:@selector(moreAlbumsButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    }else{
-        [button addTarget:self action:@selector(moreTracksButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-
-    [button setTitle:@"more>" forState:UIControlStateNormal];
-    [button sizeToFit];
-    button.center = CGPointMake(tableView.frame.size.width - 50, 9);
-    
-    
-    
-    
-    
-    [label setFont:[UIFont boldSystemFontOfSize:16]];
-    NSString *string = [self.beatSectionTitles objectAtIndex:section];
-    /* Section header is in 0th index... */
-    [label setText:string];
-    [view addSubview:label];
-    [view addSubview:button];
-    
-    //[view addSubview:button];
-    [view setBackgroundColor:[UIColor colorWithRed:166/255.0 green:177/255.0 blue:186/255.0 alpha:1.0]]; //your background color...
-    return view;
-}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
      NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:section];
