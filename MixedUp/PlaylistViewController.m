@@ -12,6 +12,7 @@
 @interface PlaylistViewController ()
 
 - (IBAction)myPlaylistsButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *savePlaylistButton;
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 
 @end

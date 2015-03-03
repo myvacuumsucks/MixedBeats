@@ -29,7 +29,7 @@
 
 
   if (error != nil) {
-    NSLog(@"json parsing unsuccessful. %@", error.localizedDescription);
+	  NSLog(@"json parsing unsuccessful. %@", error.localizedDescription);
   } else {
       
       id JSONData = [JSONDictionary valueForKeyPath:@"data"];
@@ -43,21 +43,35 @@
                     @"tracks" : tracksArray
                     };
 
-      } else {
-          if ([JSONData isKindOfClass:[NSArray class]]) {
-              NSArray *moreArray = JSONData;
-              
-              NSLog(@"data dictionary: %@", JSONData);
-              beats = @{@">" : moreArray,
-                        };
-          }
-      }
-      
-     
-    return beats;
+	  } else {
+		  
+		  if ([JSONData[0][@"result_type"] isEqualToString:@"artist"]){
+			  
+			  NSArray *artistsArray = [JSONDictionary valueForKeyPath:@"data"];
+			  
+			  beats = @{
+						@"artists" : artistsArray
+						};
+			  NSLog(@"ARTIST");
+			  
+		  } else if ([JSONData[0][@"result_type"] isEqualToString:@"album"]){
+			  NSArray *albumsArray = [JSONDictionary valueForKeyPath:@"data"];
+			  beats = @{
+						@"albums" : albumsArray
+						};
+			  NSLog(@"ALBUM");
+		  } else if ([JSONData[0][@"result_type"] isEqualToString:@"track"]){
+			  NSArray *tracksArray = [JSONDictionary valueForKeyPath:@"data"];
+			  beats = @{
+						@"tracks" : tracksArray
+						};
+			  NSLog(@"TRACKS");
+		  }
+	  }
   }
-  return nil;
+  return beats;
 }
+
 
 +(NSMutableArray *)parseJSONIntoPlaylists:(NSData *)rawJSONData{
 	

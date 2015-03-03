@@ -83,7 +83,7 @@
 		
 		[self.alert addAction:okAction];
 		[self.alert addAction:cancelAction];
-		[self presentViewController:self.alert animated:YES completion:nil];
+		[self presentViewController:self.alert animated:NO completion:nil];
 	  }
 }
 
@@ -108,9 +108,6 @@
     return [self.beatSectionTitles count];
 }
 
-//-(void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender{
-//	
-//}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	
