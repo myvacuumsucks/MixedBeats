@@ -51,7 +51,7 @@ NSString* code = @"";
 	NSString *components = query;
  // NSArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
 	NSArray* comp1Array= [components componentsSeparatedByString:@"&code="];
-	NSString* comp1 = comp1Array[1];
+	NSString* comp1 = comp1Array[1]; 
 	NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
 
 	

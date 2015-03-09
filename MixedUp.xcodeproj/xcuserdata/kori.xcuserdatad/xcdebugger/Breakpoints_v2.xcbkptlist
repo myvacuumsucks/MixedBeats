@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MixedUp/NetworkController.m"
-            timestampString = "447626245.19247"
+            timestampString = "447629156.982344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "-requestOAuthToken"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "-handleOAuthURL:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MixedUp/NetworkController.m"
-            timestampString = "447626245.19247"
+            filePath = "MixedUp/ViewController.m"
+            timestampString = "447629399.709164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "-handleOAuthURL:"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "-leftSwipeHandler:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

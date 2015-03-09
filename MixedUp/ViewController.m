@@ -90,13 +90,13 @@
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 
-//
-//    self.searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-//    [[NetworkController sharedInstance] federatedSearchTerm:self.searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
-//        self.beats = beats;
-//        self.beatSectionTitles = [beats allKeys];
-//        [self.tableView reloadData];
-//	}];
+
+    self.searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    [[NetworkController sharedInstance] federatedSearchTerm:self.searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
+        self.beats = beats;
+        self.beatSectionTitles = [beats allKeys];
+        [self.tableView reloadData];
+	}];
 }
 
 //- (BOOL) textFieldShouldReturn:(UITextField *)textField {
