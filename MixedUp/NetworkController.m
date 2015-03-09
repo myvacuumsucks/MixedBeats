@@ -49,35 +49,22 @@ NSString* code = @"";
 	
 	NSString* query = callbackURL.query;
 	NSString *components = query;
- // NSArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
 	NSArray* comp1Array= [components componentsSeparatedByString:@"&code="];
 	NSString* comp1 = comp1Array[1]; 
 	NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
-
-	
-  //NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
- // self.token = [comp2Array firstObject];
 	
 	NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
 	NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
 	
-
-	self.token = [comp2Array firstObject];
+	code = [comp2Array firstObject];
 	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-	[defaults setValue:([NetworkController sharedInstance].token) forKey:@"authToken"];
-	[defaults synchronize];
-	NSLog(@"%@", self.token);
-	
-	NSString* code = self.token;
 	
 	NSString *post = [NSString stringWithFormat:@"client_secret=%@&client_id=%@&redirect_uri=%@&code=%@&grant_type=authorization_code", client_Secret, client_ID, redirectURL, code];
+	
 	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	
 	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
-	
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	
 	[request setURL:[NSURL URLWithString:@"https://partner.api.beatsmusic.com/v1/oauth2/token"]];
 	[request setHTTPMethod:@"POST"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -86,14 +73,25 @@ NSString* code = @"";
 	
 	NSURLSessionDataTask * dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 		
-											NSLog(@"2ndPhaseResponse:%@ %@\n", response, error);
 		
-													if(error == nil) {
-														NSString * text = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-														NSLog(@"Data = %@",text);
-													}
+		NSLog(@"2ndPhaseResponse:%@ %@\n", response, error);
+		
+		if(error == nil) {
+			NSString * text = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+			NSLog(@"Data = %@",text);
+		}
+		NSError *err = nil;
+		NSDictionary* responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&err];
+		
+		self.token = responseDictionary[@"access_token"];
+		
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		
+		[defaults setValue:([NetworkController sharedInstance].token) forKey:@"authToken"];
+		[defaults synchronize];
+		NSLog(@"%@", self.token);
 													
-										}];
+	}];
 	[dataTask resume];
 	
 	
