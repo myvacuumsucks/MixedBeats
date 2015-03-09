@@ -11,8 +11,8 @@
 
 @interface PlaylistViewController ()
 
-- (IBAction)myPlaylistsButton:(id)sender;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *savePlaylistButton;
+- (IBAction)myPlaylistButton:(UIButton *)sender;
+
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 
 @end
@@ -64,4 +64,19 @@
   }];
 }
 
+- (IBAction)myPlaylistButton:(UIButton *)sender {
+	
+	if (sender.tag == 0) {
+		[[NetworkController sharedInstance] getMyPlaylists:([[NetworkController sharedInstance]user_ID]) completionHandler:^(NSError *error, NSMutableArray *playlists) {
+			self.playlistArray = playlists;
+			[self.tableView reloadData];
+		}];
+	}else if (sender.tag == 1) {
+		
+		NSLog(@"Saved");
+		//[[NetworkController sharedInstance] saveMyPlaylist:self.playlistArray];
+	}
+
+
+}
 @end

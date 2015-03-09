@@ -15,44 +15,89 @@
 
 @implementation NetworkController
 
-NSString* clientID = @"3nbxp96juh7spx6j9srkknhs";
-NSString* clientSecret = @"uSbQFBHZtJEvBxjg2dc2fhRs";
+
+NSString* client_ID = @"3nbxp96juh7spx6j9srkknhs";
+NSString* client_Secret = @"uSbQFBHZtJEvBxjg2dc2fhRs";
 NSString* oAuthURL = @"https://partner.api.beatsmusic.com/v1/oauth2/authorize";
-NSString* response_type = @"token";
+NSString* response_type = @"code";
 NSString* redirectURL = @"somefancyname://test";
+NSString* code = @"";
 
 
 
-+ (NetworkController*)sharedInstance
-{
-  static NetworkController *_sharedInstance = nil;
-  static dispatch_once_t oncePredicate;
-  dispatch_once(&oncePredicate, ^{
-    _sharedInstance = [[NetworkController alloc] init];
-  });
-  return _sharedInstance;
++ (NetworkController*)sharedInstance {
+	
+	static NetworkController *_sharedInstance = nil;
+	static dispatch_once_t oncePredicate;
+	dispatch_once(&oncePredicate, ^{
+		_sharedInstance = [[NetworkController alloc] init];
+	});
+	
+	return _sharedInstance;
 }
 
 -(void)requestOAuthAccess {
-  NSString *loginURL = [NSString stringWithFormat: @"%@?response_type=%@&redirect_uri=%@&client_id=%@", oAuthURL, response_type, redirectURL, clientID];
-  NSURL* url = [NSURL URLWithString:loginURL];
-  
-  [[UIApplication sharedApplication]openURL:url];
+	
+	NSString *loginURL = [NSString stringWithFormat: @"%@?response_type=%@&redirect_uri=%@&client_id=%@", oAuthURL, response_type, redirectURL, client_ID];
+	NSURL* url = [NSURL URLWithString:loginURL];
+
+	[[UIApplication sharedApplication]openURL:url];
 }
 
--(void)handleOAuthURL: (NSURL*) callbackURL {
-  NSString* query = callbackURL.query;
-  NSString *components = query;
-  NSArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
-  NSString* comp1 = [comp1Array lastObject];
-  NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
-  self.token = [comp2Array firstObject];
-  
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  [defaults setValue:([NetworkController sharedInstance].token) forKey:@"authToken"];
-  [defaults synchronize];
 
-  NSLog(@"%@", self.token);
+-(void)handleOAuthURL: (NSURL*) callbackURL {
+	
+	NSString* query = callbackURL.query;
+	NSString *components = query;
+ // NSArray* comp1Array= [components componentsSeparatedByString:@"access_token="];
+	NSArray* comp1Array= [components componentsSeparatedByString:@"&code="];
+	NSString* comp1 = comp1Array[1];
+	NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
+
+	
+  //NSArray* comp2Array= [comp1 componentsSeparatedByString:@"&"];
+ // self.token = [comp2Array firstObject];
+	
+	NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+	NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+	
+
+	self.token = [comp2Array firstObject];
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+	[defaults setValue:([NetworkController sharedInstance].token) forKey:@"authToken"];
+	[defaults synchronize];
+	NSLog(@"%@", self.token);
+	
+	NSString* code = self.token;
+	
+	NSString *post = [NSString stringWithFormat:@"client_secret=%@&client_id=%@&redirect_uri=%@&code=%@&grant_type=authorization_code", client_Secret, client_ID, redirectURL, code];
+	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	
+	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+	
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	[request setURL:[NSURL URLWithString:@"https://partner.api.beatsmusic.com/v1/oauth2/token"]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+	[request setHTTPBody:postData];
+	
+	NSURLSessionDataTask * dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+		
+											NSLog(@"2ndPhaseResponse:%@ %@\n", response, error);
+		
+													if(error == nil) {
+														NSString * text = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+														NSLog(@"Data = %@",text);
+													}
+													
+										}];
+	[dataTask resume];
+	
+	
+	
 }
 
 - (void)federatedSearchTerm:(NSString *)name completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler {
@@ -84,6 +129,43 @@ NSString* redirectURL = @"somefancyname://test";
   
   [dataTask resume];
 }
+
+-(void)requestOAuthToken {
+	
+	NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+	NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+	
+	
+	NSString* code = self.token;
+	
+	NSString *post = [NSString stringWithFormat:@"&client_secret=%@&client_id=3%@&redirect_uri=http://kolodziejczak.svbtle.com/&code=%@&grant_type=authorization_code", client_Secret, client_ID, code];
+	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	
+	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+	
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	[request setURL:[NSURL URLWithString:@"https://partner.api.beatsmusic.com/v1/oauth2/token"]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+	[request setHTTPBody:postData];
+	
+	NSURLSessionDataTask * dataTask =[session dataTaskWithRequest:request
+												completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+													NSLog(@"2ndPhaseResponse:%@ %@\n", response, error);
+													if(error == nil)
+													{
+														NSString * text = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+														NSLog(@"Data = %@",text);
+													}
+													
+												}];
+	[dataTask resume];
+
+	
+	
+}
+
 
 - (void)moreSearchTerm:(NSString *)name type:(NSString *)type completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler {
     NSString *urlWithSearchTerm = [[NSString alloc] init];

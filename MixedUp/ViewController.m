@@ -76,6 +76,7 @@
 	
 		UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		[[NetworkController sharedInstance]requestOAuthAccess];
+		
 		}];
 	
 		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -88,13 +89,14 @@
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
-    self.searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    [[NetworkController sharedInstance] federatedSearchTerm:self.searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
-        self.beats = beats;
-        self.beatSectionTitles = [beats allKeys];
-        [self.tableView reloadData];
-	}];
+
+//
+//    self.searchTerm = [self.searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+//    [[NetworkController sharedInstance] federatedSearchTerm:self.searchTerm completionHandler:^(NSError *error, NSDictionary *beats) {
+//        self.beats = beats;
+//        self.beatSectionTitles = [beats allKeys];
+//        [self.tableView reloadData];
+//	}];
 }
 
 //- (BOOL) textFieldShouldReturn:(UITextField *)textField {
@@ -130,6 +132,7 @@
 		[button sizeToFit];
 		button.center = CGPointMake(tableView.frame.size.width * .9, tableView.sectionHeaderHeight	/ 2);
 		[view addSubview:button];
+		
 	}
 	
 	[label setFont:[UIFont boldSystemFontOfSize:16]];
