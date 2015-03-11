@@ -73,7 +73,6 @@ NSString* code = @" ";
 	
 	NSURLSessionDataTask * dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 		
-		
 		NSLog(@"2ndPhaseResponse:%@ %@\n", response, error);
 		
 		if(error == nil) {
@@ -93,8 +92,6 @@ NSString* code = @" ";
 													
 	}];
 	[dataTask resume];
-	
-	
 	
 }
 
@@ -328,11 +325,13 @@ NSString* code = @" ";
 		
 		NSLog(@"SaveThePlaylist:%@ %@\n", response, error);
 		
-		if(error == nil) {
+		NSError *err = nil;
+		
+		if(err == nil) {
 			NSString * text = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
 			NSLog(@"Data = %@",text);
 		}
-		NSError *err = nil;
+
 		
 		
 	}];
