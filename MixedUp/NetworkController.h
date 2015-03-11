@@ -24,9 +24,8 @@
 -(void)moreSearchTerm:(NSString *)name type:(NSString *)type completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler;
 -(void)getMyPlaylists:(NSString *)userID completionHandler: (void(^)(NSError *error, NSMutableArray *playlists))completionHandler;
 -(void)getMyUserID: (void(^)(NSError *error, NSString *userID))completionHandler;
-- (void) getMyPlaylistTracksWithID:(NSString *)playlistID completionHandler: (void(^)(NSError *error, NSMutableArray *playlists))completionHandler;
+-(void) getMyPlaylistTracksWithID:(NSString *)playlistID completionHandler: (void(^)(NSError *error, NSMutableArray *playlists))completionHandler;
 
--(void)requestOAuthToken;
 -(void)saveCurrentPlaylist;
 
 
