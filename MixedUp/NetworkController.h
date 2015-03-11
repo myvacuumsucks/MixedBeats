@@ -27,7 +27,7 @@
 - (void) getMyPlaylistTracksWithID:(NSString *)playlistID completionHandler: (void(^)(NSError *error, NSMutableArray *playlists))completionHandler;
 
 -(void)requestOAuthToken;
+-(void)saveCurrentPlaylist;
 
-//-(void)saveMyPlaylist:(NSDictionary *) playlist;
 
 @end

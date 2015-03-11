@@ -21,7 +21,7 @@ NSString* client_Secret = @"uSbQFBHZtJEvBxjg2dc2fhRs";
 NSString* oAuthURL = @"https://partner.api.beatsmusic.com/v1/oauth2/authorize";
 NSString* response_type = @"code";
 NSString* redirectURL = @"somefancyname://test";
-NSString* code = @"";
+NSString* code = @" ";
 
 
 
@@ -296,5 +296,49 @@ NSString* code = @"";
 	
 	[dataTask resume];
 }
+
+
+
+-(void)saveCurrentPlaylist{
+	
+	
+	NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+	NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+
+	//Code to create a list of tracks in the tableview for the current playlist
+	//
+	//
+	//
+	//
+	
+	NSString *put = [NSString stringWithFormat:@"track_ids=tr51760477&access_token=%@", self.token];
+	
+	NSData *putData = [put dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	NSString *putLength = [NSString stringWithFormat:@"%lu", (unsigned long)[putData length]];
+	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+	
+	[request setURL:[NSURL URLWithString:@"https://partner.api.beatsmusic.com/v1/api/playlists/pl287673114018447360/tracks?"]];
+	[request setHTTPMethod:@"PUT"];
+	[request setValue:putLength forHTTPHeaderField:@"Content-Length"];
+	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+	[request setHTTPBody:putData];
+	
+	NSURLSessionDataTask * dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+		
+		
+		NSLog(@"SaveThePlaylist:%@ %@\n", response, error);
+		
+		if(error == nil) {
+			NSString * text = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+			NSLog(@"Data = %@",text);
+		}
+		NSError *err = nil;
+		
+		
+	}];
+	[dataTask resume];
+	
+};
+
 
 @end

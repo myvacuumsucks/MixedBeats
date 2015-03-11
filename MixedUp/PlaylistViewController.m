@@ -72,8 +72,10 @@
 			[self.tableView reloadData];
 		}];
 	}else if (sender.tag == 1) {
-		
+		[[NetworkController sharedInstance]saveCurrentPlaylist];
 		NSLog(@"Saved");
+		
+		
 		//[[NetworkController sharedInstance] saveMyPlaylist:self.playlistArray];
 	}
 
