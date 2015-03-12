@@ -167,8 +167,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
+	
+	
     NSString *sectionTitle = [self.beatSectionTitles objectAtIndex:indexPath.section];
+	
     NSArray *sectionObjects = [self.beats objectForKey:sectionTitle];
     NSDictionary *beat = [sectionObjects objectAtIndex:indexPath.row];
 	

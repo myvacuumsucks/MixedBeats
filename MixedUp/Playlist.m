@@ -19,7 +19,6 @@
 	NSError *error = nil;
 	NSDictionary *JSONDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 	
-
 	if (error) {
 		NSLog(@"parse playlist failed");
 	}else{
