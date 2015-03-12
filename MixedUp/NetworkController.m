@@ -125,41 +125,6 @@ NSString* code = @" ";
   [dataTask resume];
 }
 
--(void)requestOAuthToken {
-	
-	NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-	NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-	
-	
-	NSString* code = self.token;
-	
-	NSString *post = [NSString stringWithFormat:@"&client_secret=%@&client_id=3%@&redirect_uri=http://kolodziejczak.svbtle.com/&code=%@&grant_type=authorization_code", client_Secret, client_ID, code];
-	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	
-	NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
-	
-	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	[request setURL:[NSURL URLWithString:@"https://partner.api.beatsmusic.com/v1/oauth2/token"]];
-	[request setHTTPMethod:@"POST"];
-	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-	[request setHTTPBody:postData];
-	
-	NSURLSessionDataTask * dataTask =[session dataTaskWithRequest:request
-												completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-													NSLog(@"2ndPhaseResponse:%@ %@\n", response, error);
-													if(error == nil)
-													{
-														NSString * text = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-														NSLog(@"Data = %@",text);
-													}
-													
-												}];
-	[dataTask resume];
-
-	
-	
-}
 
 
 - (void)moreSearchTerm:(NSString *)name type:(NSString *)type completionHandler: (void(^)(NSError *error, NSDictionary *beats))completionHandler {
@@ -293,7 +258,6 @@ NSString* code = @" ";
 	
 	[dataTask resume];
 }
-
 
 
 -(void)saveCurrentPlaylist{

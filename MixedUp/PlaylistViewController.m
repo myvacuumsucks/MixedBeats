@@ -56,14 +56,6 @@
 	
 }
 
-- (IBAction)myPlaylistsButton:(id)sender {
-	
-  [[NetworkController sharedInstance] getMyPlaylists:([[NetworkController sharedInstance]user_ID]) completionHandler:^(NSError *error, NSMutableArray *playlists) {
-      self.playlistArray = playlists;
-      [self.tableView reloadData];
-  }];
-}
-
 - (IBAction)myPlaylistButton:(UIButton *)sender {
 	
 	if (sender.tag == 0) {
