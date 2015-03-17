@@ -21,6 +21,7 @@
 		8B8443CF1A32A94F00E04392 /* MixedUpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8443CE1A32A94F00E04392 /* MixedUpTests.m */; };
 		8BB8ED051A8ED1A500543DA6 /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB8ED041A8ED1A500543DA6 /* Playlist.m */; };
 		8BB8ED081A8EEED600543DA6 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB8ED071A8EEED600543DA6 /* Artist.m */; };
+		8BE522411AB74E83005AA43A /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE522401AB74E83005AA43A /* Track.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		8BB8ED041A8ED1A500543DA6 /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
 		8BB8ED061A8EEED600543DA6 /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
 		8BB8ED071A8EEED600543DA6 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
+		8BE5223F1AB74E83005AA43A /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		8BE522401AB74E83005AA43A /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 				8BB8ED041A8ED1A500543DA6 /* Playlist.m */,
 				8BB8ED061A8EEED600543DA6 /* Artist.h */,
 				8BB8ED071A8EEED600543DA6 /* Artist.m */,
+				8BE5223F1AB74E83005AA43A /* Track.h */,
+				8BE522401AB74E83005AA43A /* Track.m */,
 				45B6405E1A7DC57E0031FCB5 /* Beat.h */,
 				45B6405F1A7DC57E0031FCB5 /* Beat.m */,
 			);
@@ -276,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BE522411AB74E83005AA43A /* Track.m in Sources */,
 				45B6405A1A7DC3710031FCB5 /* ViewController.m in Sources */,
 				453699991A40ED8900643029 /* PlaylistViewController.m in Sources */,
 				8BB8ED081A8EEED600543DA6 /* Artist.m in Sources */,

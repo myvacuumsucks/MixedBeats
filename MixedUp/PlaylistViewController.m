@@ -44,11 +44,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-	Playlist *list = self.playlistArray[indexPath.row];
-	self.headerLabel.text = list.name;
+	Playlist *playlist = [self.playlistArray objectAtIndex:indexPath.row];
+
+	self.headerLabel.text = playlist.name;
 	
-	Playlist *playlistID = [self.playlistArray objectAtIndex:indexPath.row];
-	[[NetworkController sharedInstance]getMyPlaylistTracksWithID: playlistID.ident completionHandler:^(NSError *error, NSMutableArray *playlists) {
+//
+//	self.playlistArray = playlist.tracksArray;
+//	[self.tableView reloadData];
+
+	[[NetworkController sharedInstance]getMyPlaylistTracksWithID: playlist.playlistID completionHandler:^(NSError *error, NSMutableArray *playlists) {
 		self.playlistArray = playlists;
 
 		[self.tableView reloadData];
@@ -59,12 +63,14 @@
 - (IBAction)myPlaylistButton:(UIButton *)sender {
 	
 	if (sender.tag == 0) {
-		[[NetworkController sharedInstance] getMyPlaylists:([[NetworkController sharedInstance]user_ID]) completionHandler:^(NSError *error, NSMutableArray *playlists) {
+		[[NetworkController sharedInstance] getMyPlaylists:([[NetworkController sharedInstance] user_ID])completionHandler:^(NSError *error, NSMutableArray *playlists) {
 			self.playlistArray = playlists;
 			[self.tableView reloadData];
 		}];
 	}else if (sender.tag == 1) {
 		[[NetworkController sharedInstance]saveCurrentPlaylist];
+		
+		//
 		NSLog(@"Saved");
 		
 		

@@ -7,13 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Track.h"
+#import "NetworkController.h"
 
 @interface Playlist : NSObject
 
-@property (strong, nonatomic) NSString* name;
-@property (strong, nonatomic) NSString* ident;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *playlistID;
+@property (strong, nonatomic) NSMutableArray *tracksArray;
 
 +(NSMutableArray *)parseJsonToPlaylist:(NSData *)data;
-+ (NSArray *)parseJSONToTracklist:(NSData *)data;
+
+
 
 @end
